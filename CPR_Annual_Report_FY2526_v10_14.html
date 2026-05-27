@@ -9,7 +9,7 @@
 :root {
   --black:#231f20;--yellow:#ffe512;--blue:#44c8f5;--pink:#e3407f;
   --teal:#009db4;--green:#4db848;--orange:#f37021;--grey:#58595b;
-  --light:#f7f7f5;--sidebar:260px;
+  --light:#f7f7f5;--sidebar:260px;h
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black);}
@@ -56,7 +56,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 .sb-footer{padding:12px 20px;font-size:9px;color:rgba(255,255,255,0.18);letter-spacing:.04em;line-height:1.8;border-top:1px solid rgba(255,255,255,0.05);}
 
 /* MAIN */
-#main{flex:1;min-width:0;height:100vh;overflow-y:auto;overflow-x:hidden;position:relative;}
+#main{flex:1;min-width:0;height:100vh;overflow-y:auto;overflow-x:hidden;position:relative;}#sec-tech,#sec-fy27{margin-left:260px;}
 
 /* WATERMARK */
 body.watermark #main::before{content:"CONFIDENTIAL";position:fixed;top:50%;left:calc(50% + var(--sidebar)/2);transform:translate(-50%,-50%) rotate(-35deg);font-size:80px;font-weight:900;font-family:"Playfair Display",serif;color:rgba(35,31,32,0.04);pointer-events:none;z-index:50;white-space:nowrap;letter-spacing:4px;}
