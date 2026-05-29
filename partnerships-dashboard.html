@@ -76,20 +76,16 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 
 /* PILLAR TABS */
 .pillar-tabs{display:flex;gap:8px;margin-bottom:28px;}
-.pillar-tab{
-  padding:10px 22px;
-  border-radius:6px;
-  font-size:12px;
-  font-weight:600;
-  letter-spacing:.05em;
-  cursor:pointer;
-  border:2px solid var(--mid);
-  background:#fff;
-  color:var(--grey);
-  transition:all .2s;
-}
-.pillar-tab:hover{border-color:var(--black);}
-.pillar-tab.active{background:var(--black);color:var(--yellow);border-color:var(--black);}
+.pillar-tab{padding:10px 20px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:2px solid var(--mid);border-left-width:4px;background:#fff;color:var(--grey);transition:all .15s;box-shadow:0 1px 3px rgba(0,0,0,0.06);user-select:none;}
+.pillar-tab:hover{border-color:var(--black);border-left-color:inherit;color:var(--black);box-shadow:0 2px 6px rgba(0,0,0,0.12);transform:translateY(-1px);}
+.pillar-tab.active{background:var(--black);color:#fff;border-color:var(--black);box-shadow:0 2px 8px rgba(0,0,0,0.18);}
+.pillar-tab.tab-overview.active{color:var(--yellow);}
+.pillar-tab.tab-a{border-left-color:var(--yellow);}
+.pillar-tab.tab-a.active{border-left-color:var(--yellow);color:var(--yellow);}
+.pillar-tab.tab-b{border-left-color:var(--teal);}
+.pillar-tab.tab-b.active{border-left-color:var(--teal);color:var(--blue);}
+.pillar-tab.tab-c{border-left-color:var(--green);}
+.pillar-tab.tab-c.active{border-left-color:var(--green);color:var(--green);}
 
 /* HERO KPI ROW */
 .kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px;}
@@ -223,10 +219,10 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 
   <!-- PILLAR TABS -->
   <div class="pillar-tabs">
-    <div class="pillar-tab active" onclick="showView('overview')">Overview</div>
-    <div class="pillar-tab" onclick="showView('hospital')">A · Hospital</div>
-    <div class="pillar-tab" onclick="showView('consultant')">B · Consultant</div>
-    <div class="pillar-tab" onclick="showView('opportunity')">C · Opportunity</div>
+    <div class="pillar-tab tab-overview active" onclick="showView('overview')">Overview</div>
+    <div class="pillar-tab tab-a" onclick="showView('hospital')">A · Hospital</div>
+    <div class="pillar-tab tab-b" onclick="showView('consultant')">B · Consultant</div>
+    <div class="pillar-tab tab-c" onclick="showView('opportunity')">C · Opportunity</div>
   </div>
 
   <!-- ===== OVERVIEW VIEW ===== -->
