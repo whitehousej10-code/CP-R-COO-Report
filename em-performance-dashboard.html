@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CP+R · EM Performance Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#231f20;
+  --yellow:#ffe512;
+  --blue:#44c8f5;
+  --green:#4db848;
+  --pink:#e3407f;
+  --teal:#009db4;
+  --light:#f7f7f5;
+  --mid:#ebebeb;
+  --grey:#58595b;
+  --sidebar:72px;
+}
+body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black);display:flex;height:100vh;overflow:hidden;}
+.sidebar{width:var(--sidebar);background:var(--black);display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:0;flex-shrink:0;z-index:10;}
+.sidebar-logo{font-family:"Playfair Display",serif;font-size:13px;font-weight:900;color:var(--yellow);letter-spacing:-1px;margin-bottom:28px;text-align:center;line-height:1;}
+.sidebar-logo span{color:#fff;font-weight:400;letter-spacing:.15em;text-transform:uppercase;display:block;font-size:9px;margin-top:3px;font-family:"DM Sans",sans-serif;}
+.nav-items{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;flex:1;}
+.nav-item{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 0 8px;cursor:pointer;color:rgba(255,255,255,0.4);font-size:9px;font-weight:500;letter-spacing:.3px;text-transform:uppercase;text-decoration:none;border-left:3px solid transparent;}
+.nav-item:hover{color:rgba(255,255,255,0.8);}
+.nav-item.active{color:var(--yellow);border-left-color:var(--yellow);background:rgba(255,229,18,0.06);}
+.nav-icon{font-size:18px;line-height:1;}
+.main{flex:1;overflow-y:auto;padding:32px 36px;}
+.page-header{margin-bottom:28px;border-bottom:2px solid var(--mid);padding-bottom:20px;display:flex;align-items:flex-end;justify-content:space-between;}
+.header-badges{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.badge{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;}
+.badge-blue{background:var(--blue);color:var(--black);}
+.badge-outline{border:1.5px solid var(--mid);color:var(--grey);}
+.badge-green{background:var(--green);color:#fff;}
+.badge-red{background:var(--pink);color:#fff;}
+.page-tag{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:6px;}
+.page-title{font-family:"Playfair Display",serif;font-size:36px;font-weight:900;color:var(--black);line-height:1.1;}
+/* HERO */
+.hero-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-bottom:28px;border:1.5px solid var(--black);border-radius:3px;overflow:hidden;}
+.hero-cell{padding:22px 24px;background:var(--black);color:#fff;border-right:1.5px solid rgba(255,255,255,0.1);}
+.hero-cell:last-child{border-right:none;}
+.hero-cell .h-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;}
+.hero-cell .h-value{font-family:"Playfair Display",serif;font-size:42px;font-weight:900;color:var(--blue);line-height:1;}
+.hero-cell .h-sub{font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;line-height:1.5;}
+.hero-cell .h-delta{font-size:11px;font-weight:600;margin-top:4px;}
+.hero-cell .h-delta.up{color:var(--green);}
+.hero-cell .h-delta.warn{color:var(--yellow);}
+/* KPI GRID */
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px;}
+.kpi-card{background:#fff;border:1.5px solid var(--mid);border-top:3px solid var(--blue);border-radius:3px;padding:18px 20px;}
+.kpi-card.met{border-top-color:var(--green);}
+.kpi-card.missed{border-top-color:var(--pink);}
+.kpi-card .k-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
+.kpi-card .k-value{font-family:"Playfair Display",serif;font-size:32px;font-weight:900;color:var(--black);line-height:1;}
+.kpi-card .k-target{font-size:11px;color:var(--grey);margin-top:6px;}
+.kpi-card .k-status{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:6px;}
+.kpi-card .k-status.met{color:var(--green);}
+.kpi-card .k-status.missed{color:var(--pink);}
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px;}
+.three-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-bottom:28px;}
+.panel{background:#fff;border:1.5px solid var(--mid);border-radius:3px;padding:24px;}
+.panel-title{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:16px;}
+/* ARC CHART */
+.arc-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.arc-label{font-size:11px;color:var(--grey);width:110px;flex-shrink:0;}
+.arc-track{flex:1;background:var(--mid);height:8px;border-radius:4px;overflow:hidden;position:relative;}
+.arc-fill{height:100%;border-radius:4px;background:var(--blue);transition:width .3s;}
+.arc-fill.target{background:rgba(0,0,0,0.15);position:absolute;right:0;top:0;}
+.arc-val{font-size:12px;font-weight:700;width:40px;text-align:right;}
+.arc-marker{position:absolute;right:0;top:-2px;width:2px;height:12px;background:var(--pink);border-radius:1px;}
+/* EM TABLE */
+.em-table{width:100%;border-collapse:collapse;}
+.em-table th{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);border-bottom:2px solid var(--mid);padding:8px 12px;text-align:left;}
+.em-table td{font-size:13px;padding:10px 12px;border-bottom:1px solid var(--mid);}
+.em-table tr:last-child td{border-bottom:none;font-weight:700;background:var(--light);}
+.em-table .val{font-family:"Playfair Display",serif;font-size:15px;font-weight:900;}
+.em-table .highlight{color:var(--blue);}
+.em-table .good{color:var(--green);}
+.em-table .warn{color:var(--pink);}
+/* HANDOVER STRIP */
+.handover-strip{background:var(--black);color:#fff;border-radius:3px;padding:20px 24px;margin-bottom:28px;display:flex;gap:32px;align-items:center;}
+.handover-strip .h-item{flex:1;}
+.handover-strip .h-lbl{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:6px;}
+.handover-strip .h-val{font-family:"Playfair Display",serif;font-size:28px;font-weight:900;color:var(--yellow);line-height:1;}
+.handover-strip .h-note{font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px;}
+.handover-strip .divider{width:1px;background:rgba(255,255,255,0.1);align-self:stretch;}
+/* NARRATIVE */
+.narrative{background:var(--light);border-left:3px solid var(--blue);padding:14px 16px;font-size:13px;color:var(--grey);line-height:1.6;border-radius:0 3px 3px 0;margin-top:16px;}
+.quote-block{background:var(--black);color:#fff;border-radius:3px;padding:20px 24px;margin-bottom:28px;}
+.quote-text{font-family:"Playfair Display",serif;font-size:16px;font-weight:700;line-height:1.5;color:#fff;margin-bottom:8px;}
+.quote-attr{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:.05em;}
+.page-footer{border-top:2px solid var(--mid);padding-top:20px;margin-top:8px;}
+.footer-text{font-size:12px;color:var(--grey);line-height:1.6;}
+</style>
+</head>
+<body>
+<nav class="sidebar">
+  <div class="sidebar-logo">CP+R<span>FY 25/26</span></div>
+  <div class="nav-items">
+    <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>OVERVIEW</a>
+    <a href="partnerships-dashboard.html" class="nav-item"><span class="nav-icon">🤝</span>PARTNERS</a>
+    <a href="clinical-dashboard.html" class="nav-item"><span class="nav-icon">🏥</span>CLINICAL</a>
+    <div class="nav-item"><span class="nav-icon">📋</span>ONBOARD</div>
+    <div class="nav-item active"><span class="nav-icon">⚡</span>EM PERF</div>
+    <div class="nav-item"><span class="nav-icon">👥</span>PEOPLE</div>
+    <div class="nav-item"><span class="nav-icon">💻</span>TECH</div>
+    <div class="nav-item"><span class="nav-icon">🔭</span>FY26/27</div>
+  </div>
+</nav>
+
+<main class="main">
+  <div class="page-header">
+    <div>
+      <div class="page-tag">COMMERCIAL · 03</div>
+      <h1 class="page-title">EM Performance</h1>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-blue">⚡ AX VALUE £595,637</span>
+      <span class="badge badge-green">✓ PLAN VALUE MET</span>
+      <span class="badge badge-outline">410 ACRs CONDUCTED</span>
+      <span class="badge badge-outline">244 CONVERTED</span>
+    </div>
+  </div>
+
+  <!-- HERO STRIP -->
+  <div class="hero-strip">
+    <div class="hero-cell">
+      <div class="h-label">AX VALUE DELIVERED FY25/26</div>
+      <div class="h-value">£595,637</div>
+      <div class="h-delta up">↑ 21.7% vs FY24/25 (£489,396)</div>
+    </div>
+    <div class="hero-cell">
+      <div class="h-label">PLAN VALUE AT HANDOVER</div>
+      <div class="h-value">2.06</div>
+      <div class="h-delta up">↑ from 1.90 baseline · target 2.06, achieved exactly</div>
+    </div>
+    <div class="hero-cell">
+      <div class="h-label">CONVERSION RATE AT HANDOVER</div>
+      <div class="h-value">61.7%</div>
+      <div class="h-delta warn">↑ from 58.2% · 3% below 64% target</div>
+      <div class="h-sub">Handed to James Porter (Head of Athlete Experience) W41 · 5 March 2026</div>
+    </div>
+  </div>
+
+  <!-- FY KPI CARDS -->
+  <div class="kpi-grid">
+    <div class="kpi-card met">
+      <div class="k-label">PLAN VALUE · FY AVG</div>
+      <div class="k-value">2.07</div>
+      <div class="k-target">Target: 2.06</div>
+      <div class="k-status met">✓ Achieved</div>
+    </div>
+    <div class="kpi-card missed">
+      <div class="k-label">CONVERSION RATE · FY AVG</div>
+      <div class="k-value">61.1%</div>
+      <div class="k-target">Target: 64%</div>
+      <div class="k-status missed">✗ 3% below target</div>
+    </div>
+    <div class="kpi-card missed">
+      <div class="k-label">RA COMPLIANCE · FY AVG</div>
+      <div class="k-value">67.3%</div>
+      <div class="k-target">Target: 90%</div>
+      <div class="k-status missed">✗ Significant gap</div>
+    </div>
+    <div class="kpi-card">
+      <div class="k-label">AVG ACR VALUE</div>
+      <div class="k-value">£4,868</div>
+      <div class="k-target">410 ACRs · 397 completed · 244 converted</div>
+      <div class="k-status" style="color:var(--blue);">Plan value 2.09 across all EMs</div>
+    </div>
+  </div>
+
+  <!-- HANDOVER STRIP -->
+  <div class="handover-strip">
+    <div class="h-item">
+      <div class="h-lbl">MANAGED BY JAMIE</div>
+      <div class="h-val">W1–W40</div>
+      <div class="h-note">June 2025 – 5 March 2026</div>
+    </div>
+    <div class="divider"></div>
+    <div class="h-item">
+      <div class="h-lbl">HANDED TO</div>
+      <div class="h-val">James Porter</div>
+      <div class="h-note">Head of Athlete Experience · W41 onwards</div>
+    </div>
+    <div class="divider"></div>
+    <div class="h-item">
+      <div class="h-lbl">FLOWN SOLOS FY TOTAL</div>
+      <div class="h-val">306</div>
+      <div class="h-note">Avg 6.24/wk · target 4.79</div>
+    </div>
+    <div class="divider"></div>
+    <div class="h-item">
+      <div class="h-lbl">TEAM CONTEXT</div>
+      <div class="h-val" style="font-size:16px;line-height:1.3;">No prior sales experience</div>
+      <div class="h-note">All EMs joined brand new to sales — year one figures must be read in that context</div>
+    </div>
+  </div>
+
+  <!-- PLAN VALUE ARC + EM TABLE -->
+  <div class="two-col">
+    <div class="panel">
+      <div class="panel-title">PLAN VALUE ARC · W2 TO W49</div>
+      <p style="font-size:11px;color:var(--grey);margin-bottom:16px;">W1 excluded (9 referrals, not representative). W2–4 used as baseline.</p>
+      <div class="arc-row">
+        <div class="arc-label">W2–4 Baseline</div>
+        <div class="arc-track"><div class="arc-fill" style="width:73%;"></div></div>
+        <div class="arc-val">1.90</div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-label">W15</div>
+        <div class="arc-track"><div class="arc-fill" style="width:75%;"></div></div>
+        <div class="arc-val">1.96</div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-label">W25</div>
+        <div class="arc-track"><div class="arc-fill" style="width:77%;"></div></div>
+        <div class="arc-val">2.00</div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-label">W35</div>
+        <div class="arc-track"><div class="arc-fill" style="width:79%;"></div></div>
+        <div class="arc-val">2.05</div>
+      </div>
+      <div class="arc-row" style="margin-bottom:4px;">
+        <div class="arc-label" style="font-weight:700;color:var(--black);">W40 · Handover</div>
+        <div class="arc-track"><div class="arc-fill" style="width:79.2%;background:var(--yellow);"></div></div>
+        <div class="arc-val" style="color:var(--yellow);font-weight:900;">2.06</div>
+      </div>
+      <div style="font-size:10px;color:var(--grey);margin-bottom:12px;padding-left:122px;">🎯 Target hit · James Porter takes over</div>
+      <div class="arc-row">
+        <div class="arc-label">W45</div>
+        <div class="arc-track"><div class="arc-fill" style="width:80.8%;background:var(--green);"></div></div>
+        <div class="arc-val" style="color:var(--green);">2.10</div>
+      </div>
+      <div class="arc-row">
+        <div class="arc-label">W49</div>
+        <div class="arc-track"><div class="arc-fill" style="width:79.6%;background:var(--green);"></div></div>
+        <div class="arc-val" style="color:var(--green);">2.07</div>
+      </div>
+      <div class="narrative" style="margin-top:12px;">Target line is 2.06. Yellow = handover point. Green = James Porter's stewardship post-handover.</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">CONVERSION BY EM · 244 PAID CONVERSIONS FROM 397 COMPLETED ACRs</div>
+      <table class="em-table">
+        <thead>
+          <tr>
+            <th>Experience Manager</th>
+            <th>Conv%</th>
+            <th>PV Avg</th>
+            <th>£ Avg</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>James Porter</strong> <span style="font-size:10px;color:var(--teal);font-weight:600;">now Head AX</span></td>
+            <td><span class="val good">75.0%</span></td>
+            <td><span class="val">2.56</span></td>
+            <td>£4,778</td>
+          </tr>
+          <tr>
+            <td>David Martin</td>
+            <td><span class="val highlight">65.1%</span></td>
+            <td><span class="val">2.04</span></td>
+            <td>£3,840</td>
+          </tr>
+          <tr>
+            <td>Becky Price</td>
+            <td><span class="val highlight">64.3%</span></td>
+            <td><span class="val">1.97</span></td>
+            <td>£4,745</td>
+          </tr>
+          <tr>
+            <td>Ollie Hagar</td>
+            <td><span class="val">60.9%</span></td>
+            <td><span class="val">2.14</span></td>
+            <td>£5,256</td>
+          </tr>
+          <tr>
+            <td>Megan Read</td>
+            <td><span class="val warn">54.3%</span></td>
+            <td><span class="val">2.13</span></td>
+            <td style="color:var(--green);font-weight:700;">£5,369</td>
+          </tr>
+          <tr>
+            <td>Grand Total</td>
+            <td><span class="val">61.5%</span></td>
+            <td><span class="val">2.09</span></td>
+            <td>£4,868</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="narrative" style="margin-top:12px;">Megan brings the highest avg athlete value (£5,369) with most headroom on conversion — a coaching opportunity, not a talent gap. James's numbers (75%, PV 2.56) made his progression to Head of Athlete Experience straightforward.</div>
+    </div>
+  </div>
+
+  <!-- COO QUOTE + RA NARRATIVE -->
+  <div class="two-col">
+    <div class="quote-block" style="display:flex;flex-direction:column;justify-content:space-between;">
+      <div>
+        <div class="quote-text">"Building the EM function from scratch — embedding process, structure and a performance culture — whilst managing my own commercial workload was one of the more demanding things I've taken on. The team deserve real credit for the progress they made."</div>
+      </div>
+      <div class="quote-attr">Jamie Whitehouse · COO</div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-title">RA COMPLIANCE · KEY CONTEXT</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;">
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--pink);line-height:1;">67.3%</div>
+          <div style="font-size:11px;color:var(--grey);margin-top:4px;">FY average · Target: 90%</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;font-weight:700;color:var(--pink);letter-spacing:.1em;text-transform:uppercase;">Significant gap</div>
+          <div style="font-size:11px;color:var(--grey);margin-top:4px;">Most significant<br>operational gap FY25/26</div>
+        </div>
+      </div>
+      <div class="narrative" style="margin-top:0;">RA compliance averaged 67.3% against a 90% target. A high volume of coach transitions created structural inconsistency that made this harder to control — and the EM team also needed to perform better here. Both are acknowledged. James Porter has RA compliance as a stated priority for FY26/27.</div>
+    </div>
+  </div>
+
+  <!-- RETENTION NOTE -->
+  <div class="panel" style="margin-bottom:28px;border-left:4px solid var(--blue);">
+    <div class="panel-title">LOOKING AHEAD · RETENTION IS THE PRIORITY</div>
+    <p style="font-size:13px;color:var(--grey);line-height:1.7;">Retaining this EM team into FY26/27 is one of the most commercially important things CP+R can do. They have a season of experience, a system they now understand, and a leader in James who knows what good looks like. The step change that comes in year two of a sales team is well evidenced. CP+R is in a strong position to capitalise on everything that has been built.</p>
+  </div>
+
+  <div class="page-footer">
+    <p class="footer-text">EM Performance FY25/26 · Commercial section 03. Managed by Jamie Whitehouse W1–W40, handed to James Porter (Head of Athlete Experience) at W41. All EMs joined with no prior sales experience. Plan value achieved exactly at handover (2.06). Ax value grew 21.7% year on year to £595,637. RA compliance at 67.3% vs 90% target remains the primary focus for FY26/27.</p>
+  </div>
+</main>
+</body>
+</html>
