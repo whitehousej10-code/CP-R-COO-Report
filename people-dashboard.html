@@ -7,174 +7,235 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--black:#231f20;--yellow:#ffe512;--blue:#44c8f5;--green:#4db848;--pink:#e3407f;--teal:#009db4;--light:#f7f7f5;--mid:#ebebeb;--grey:#58595b;--sidebar:72px;--ink:#1a1a2e;}
+:root{--black:#231f20;--yellow:#ffe512;--blue:#44c8f5;--green:#4db848;--pink:#e3407f;--light:#f7f7f5;--mid:#ebebeb;--grey:#58595b;--sidebar:72px;}
 body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black);display:flex;height:100vh;overflow:hidden;}
-.sidebar{width:var(--sidebar);background:var(--black);display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:0;flex-shrink:0;z-index:10;}
+.sidebar{width:var(--sidebar);background:var(--black);display:flex;flex-direction:column;align-items:center;padding:20px 0;flex-shrink:0;z-index:10;}
 .sidebar-logo{font-family:"Playfair Display",serif;font-size:13px;font-weight:900;color:var(--yellow);letter-spacing:-1px;margin-bottom:28px;text-align:center;line-height:1;}
 .sidebar-logo span{color:#fff;font-weight:400;letter-spacing:.15em;text-transform:uppercase;display:block;font-size:9px;margin-top:3px;font-family:"DM Sans",sans-serif;}
 .nav-items{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;flex:1;}
 .nav-item{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 0 8px;cursor:pointer;color:rgba(255,255,255,0.4);font-size:9px;font-weight:500;letter-spacing:.3px;text-transform:uppercase;text-decoration:none;border-left:3px solid transparent;}
 .nav-item:hover{color:rgba(255,255,255,0.8);}
 .nav-item.active{color:var(--yellow);border-left-color:var(--yellow);background:rgba(255,229,18,0.06);}
-.nav-icon{font-size:18px;line-height:1;margin-bottom:4px;}
-.main{flex:1;overflow-y:auto;padding:36px 40px;}
-.page-header{margin-bottom:36px;padding-bottom:22px;border-bottom:2px solid var(--mid);}
-.page-super{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
-.page-title{font-family:"Playfair Display",serif;font-size:38px;font-weight:900;color:var(--ink);line-height:1.1;}
-.page-title em{font-style:italic;color:var(--grey);font-weight:700;}
-.page-subtitle{font-size:14px;color:var(--grey);margin-top:10px;max-width:580px;line-height:1.6;}
-.year-one-banner{background:var(--ink);color:#fff;border-radius:4px;padding:28px 36px;margin-bottom:36px;display:flex;align-items:center;}
-.year-one-inner{flex:1;}
-.year-one-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:10px;}
-.year-one-headline{font-family:"Playfair Display",serif;font-size:26px;font-weight:900;line-height:1.25;color:#fff;}
-.year-one-headline span{color:var(--yellow);}
-.year-one-stats{display:flex;gap:36px;flex-shrink:0;padding-left:48px;border-left:1px solid rgba(255,255,255,0.12);margin-left:48px;}
-.ys-item{text-align:center;}
-.ys-num{font-family:"Playfair Display",serif;font-size:32px;font-weight:900;color:var(--yellow);line-height:1;}
-.ys-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:5px;}
-.section-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:18px;padding-bottom:8px;border-bottom:1.5px solid var(--mid);}
-.team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-bottom:40px;}
-.person-card{background:#fff;border:1.5px solid var(--mid);border-radius:4px;padding:24px 20px;position:relative;overflow:hidden;transition:box-shadow .2s;}
-.person-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;}
-.person-card.c1::before{background:var(--blue);}
-.person-card.c2::before{background:var(--green);}
-.person-card.c3::before{background:var(--pink);}
-.person-card.c4::before{background:var(--yellow);}
-.person-card.c5::before{background:var(--teal);}
-.person-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08);}
-.person-initial{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:20px;font-weight:900;margin-bottom:14px;color:#fff;}
-.c1 .person-initial{background:var(--blue);}
-.c2 .person-initial{background:var(--green);}
-.c3 .person-initial{background:var(--pink);}
-.c4 .person-initial{background:#c4a800;}
-.c5 .person-initial{background:var(--teal);}
-.person-name{font-family:"Playfair Display",serif;font-size:17px;font-weight:900;color:var(--ink);line-height:1.1;margin-bottom:4px;}
-.person-role{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:14px;}
-.person-highlight{font-size:13px;color:var(--grey);line-height:1.55;margin-bottom:16px;}
-.person-moment{background:var(--light);border-left:3px solid var(--mid);border-radius:0 2px 2px 0;padding:10px 12px;font-size:12px;font-style:italic;color:var(--grey);line-height:1.5;}
-.person-moment strong{font-style:normal;font-weight:700;color:var(--black);display:block;margin-bottom:3px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;}
-.coo-section{margin-bottom:40px;}
-.coo-card{background:var(--ink);color:#fff;border-radius:4px;padding:32px 40px;position:relative;overflow:hidden;}
-.coo-card::after{content:'"';font-family:"Playfair Display",serif;font-size:200px;font-weight:900;color:rgba(255,255,255,0.04);position:absolute;top:-20px;left:20px;line-height:1;}
-.coo-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:20px;}
-.coo-body{font-size:15px;line-height:1.75;color:rgba(255,255,255,0.88);max-width:720px;position:relative;z-index:1;}
-.coo-body p{margin-bottom:14px;}
-.coo-body p:last-child{margin-bottom:0;}
-.coo-sig{margin-top:22px;display:flex;align-items:center;gap:14px;position:relative;z-index:1;}
-.coo-sig-initial{width:40px;height:40px;border-radius:50%;background:var(--yellow);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:16px;font-weight:900;color:var(--ink);flex-shrink:0;}
-.coo-sig-name{font-weight:700;color:#fff;font-size:14px;}
-.coo-sig-title{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;}
-.forward-section{margin-bottom:16px;}
-.forward-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
-.forward-card{background:#fff;border:1.5px solid var(--mid);border-radius:4px;padding:24px 26px;}
-.forward-card .f-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:10px;}
-.forward-card .f-headline{font-family:"Playfair Display",serif;font-size:18px;font-weight:900;color:var(--ink);margin-bottom:10px;line-height:1.2;}
-.forward-card .f-body{font-size:13px;color:var(--grey);line-height:1.65;}
+.nav-icon{font-size:18px;line-height:1;}
+.main{flex:1;overflow-y:auto;padding:32px 36px;}
+.page-header{margin-bottom:28px;border-bottom:2px solid var(--mid);padding-bottom:20px;display:flex;align-items:flex-end;justify-content:space-between;}
+.header-badges{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.badge{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;}
+.badge-outline{border:1.5px solid var(--mid);color:var(--grey);}
+.page-tag{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:6px;}
+.page-title{font-family:"Playfair Display",serif;font-size:36px;font-weight:900;color:var(--black);line-height:1.1;}
+.page-subtitle{font-size:14px;color:var(--grey);margin-top:6px;line-height:1.5;}
+.section-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:14px;margin-top:32px;padding-bottom:8px;border-bottom:2px solid var(--mid);}
+.section-label:first-of-type{margin-top:0;}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:8px;}
+.person-card{background:#fff;border:1.5px solid var(--mid);border-radius:3px;padding:20px;}
+.person-card.featured{background:var(--black);border-color:var(--black);}
+.person-avatar{width:44px;height:44px;border-radius:50%;background:var(--mid);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:16px;font-weight:900;color:var(--black);margin-bottom:12px;flex-shrink:0;}
+.person-card.featured .person-avatar{background:var(--yellow);color:var(--black);}
+.person-name{font-family:"Playfair Display",serif;font-size:16px;font-weight:900;color:var(--black);line-height:1.1;margin-bottom:4px;}
+.person-card.featured .person-name{color:#fff;}
+.person-role{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
+.person-card.featured .person-role{color:rgba(255,255,255,0.5);}
+.person-line{font-size:12px;color:var(--grey);line-height:1.5;}
+.person-card.featured .person-line{color:rgba(255,255,255,0.6);}
+.narrative{background:var(--light);border-left:3px solid var(--yellow);padding:14px 16px;font-size:13px;color:var(--grey);line-height:1.6;border-radius:0 3px 3px 0;margin:24px 0;}
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--black);border-radius:3px;overflow:hidden;margin-bottom:28px;}
+.stat-cell{padding:18px 20px;border-right:1px solid rgba(255,255,255,0.08);}
+.stat-cell:last-child{border-right:none;}
+.stat-label{font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px;}
+.stat-value{font-family:"Playfair Display",serif;font-size:28px;font-weight:900;color:var(--yellow);line-height:1;}
+.stat-sub{font-size:11px;color:rgba(255,255,255,0.35);margin-top:4px;}
+.page-footer{border-top:2px solid var(--mid);padding-top:20px;margin-top:32px;}
+.footer-text{font-size:12px;color:var(--grey);line-height:1.6;}
 </style>
 </head>
 <body>
 <nav class="sidebar">
-  <div class="sidebar-logo">CP+R<span>FY 25/26</span></div>
-  <div class="nav-items">
-    <a href="index.html" class="nav-item"><span class="nav-icon">&#127968;</span>OVERVIEW</a>
-    <a href="partnerships-dashboard.html" class="nav-item"><span class="nav-icon">&#129309;</span>PARTNERS</a>
-    <a href="clinical-dashboard.html" class="nav-item"><span class="nav-icon">&#127973;</span>CLINICAL</a>
-    <div class="nav-item"><span class="nav-icon">&#128203;</span>ONBOARD</div>
-    <a href="em-performance-dashboard.html" class="nav-item"><span class="nav-icon">&#9889;</span>EM PERF</a>
-    <div class="nav-item active"><span class="nav-icon">&#128101;</span>PEOPLE</div>
-    <div class="nav-item"><span class="nav-icon">&#128187;</span>TECH</div>
-    <div class="nav-item"><span class="nav-icon">&#128299;</span>FY26/27</div>
-  </div>
+<div class="sidebar-logo">CP+R<span>FY 25/26</span></div>
+<div class="nav-items">
+<a href="index.html" class="nav-item"><span class="nav-icon">&#127968;</span>OVERVIEW</a>
+<a href="partnerships-dashboard.html" class="nav-item"><span class="nav-icon">&#129309;</span>PARTNERS</a>
+<a href="clinical-dashboard.html" class="nav-item"><span class="nav-icon">&#127973;</span>CLINICAL</a>
+<a href="onboarding-dashboard.html" class="nav-item"><span class="nav-icon">&#128203;</span>ONBOARD</a>
+<a href="em-performance-dashboard.html" class="nav-item"><span class="nav-icon">&#9889;</span>EM PERF</a>
+<div class="nav-item active"><span class="nav-icon">&#128101;</span>PEOPLE</div>
+<div class="nav-item"><span class="nav-icon">&#128187;</span>TECH</div>
+<div class="nav-item"><span class="nav-icon">&#128301;</span>FY26/27</div>
+</div>
 </nav>
 <main class="main">
-  <div class="page-header">
-    <div class="page-super">People &middot; FY 25/26</div>
-    <div class="page-title">The people behind <em>the numbers.</em></div>
-    <div class="page-subtitle">FY25/26 was a year of firsts. A team assembled from scratch, with no prior sales experience, asked to build a new commercial function in a live environment. These are the people who did it.</div>
-  </div>
-  <div class="year-one-banner">
-    <div class="year-one-inner">
-      <div class="year-one-label">The Year in Context</div>
-      <div class="year-one-headline">Five EMs. <span>Zero prior sales experience.</span><br>One year. One team. Built from the ground up.</div>
-    </div>
-    <div class="year-one-stats">
-      <div class="ys-item"><div class="ys-num">5</div><div class="ys-label">Team Members</div></div>
-      <div class="ys-item"><div class="ys-num">&pound;596k</div><div class="ys-label">AX Value Delivered</div></div>
-      <div class="ys-item"><div class="ys-num">306</div><div class="ys-label">Solos Flown</div></div>
-      <div class="ys-item"><div class="ys-num">W1&rarr;49</div><div class="ys-label">Full Season</div></div>
-    </div>
-  </div>
-  <div class="section-label">The Team &middot; Equal Parts, One Story</div>
-  <div class="team-grid">
-    <div class="person-card c1">
-      <div class="person-initial">JP</div>
-      <div class="person-name">James Porter</div>
-      <div class="person-role">EM &rarr; Head of Athlete Experience</div>
-      <div class="person-highlight">James came in as an EM and left FY25/26 leading the function. His numbers were exceptional &mdash; but his bigger contribution was showing the team what high standards look like from the inside.</div>
-      <div class="person-moment"><strong>Defining Moment</strong>Promoted to Head of Athlete Experience at W41, taking ownership of the EM team mid-season.</div>
-    </div>
-    <div class="person-card c2">
-      <div class="person-initial">DM</div>
-      <div class="person-name">David Martin</div>
-      <div class="person-role">Experience Manager</div>
-      <div class="person-highlight">Reliable and consistent across the full year, David built genuine trust with athletes. His conversion rate reflects someone who earns decisions rather than chases them &mdash; a quality that compounds over time.</div>
-      <div class="person-moment"><strong>Defining Moment</strong>Holding strong conversion through the busiest periods of the season with steady, measured relationship-building.</div>
-    </div>
-    <div class="person-card c3">
-      <div class="person-initial">BP</div>
-      <div class="person-name">Becky Price</div>
-      <div class="person-role">Experience Manager</div>
-      <div class="person-highlight">Becky brought care and attentiveness to the EM role in a way that athletes responded to. She set a tone for what great athlete experience looks and feels like &mdash; something the whole team learned from.</div>
-      <div class="person-moment"><strong>Defining Moment</strong>Delivering above-average plan values while maintaining some of the highest athlete satisfaction feedback in the team.</div>
-    </div>
-    <div class="person-card c4">
-      <div class="person-initial">OH</div>
-      <div class="person-name">Ollie Hagar</div>
-      <div class="person-role">Experience Manager</div>
-      <div class="person-highlight">Ollie brought energy and ambition to the role. His average athlete value (&pound;5,256) reflects a natural ability to understand scope and help athletes see the bigger picture &mdash; a real commercial instinct for year one.</div>
-      <div class="person-moment"><strong>Defining Moment</strong>Achieving the second-highest average athlete value in the team, demonstrating real commercial confidence in year one.</div>
-    </div>
-    <div class="person-card c5">
-      <div class="person-initial">MR</div>
-      <div class="person-name">Megan Read</div>
-      <div class="person-role">Experience Manager</div>
-      <div class="person-highlight">Megan&rsquo;s numbers tell an exciting story. The highest average athlete value in the team at &pound;5,369 speaks to the depth of relationships she builds. Her biggest year is still ahead of her.</div>
-      <div class="person-moment"><strong>Defining Moment</strong>Generating the highest average athlete value across the whole EM team &mdash; the strongest indicator of long-term commercial potential.</div>
-    </div>
-  </div>
-  <div class="coo-section">
-    <div class="section-label">A Note from the COO</div>
-    <div class="coo-card">
-      <div class="coo-label">Jamie Whitehouse &middot; COO</div>
-      <div class="coo-body">
-        <p>Building the EM function from scratch &mdash; embedding process, structure and a performance culture &mdash; whilst managing my own commercial workload was one of the more demanding things I have taken on. The team deserve real credit for the progress they made.</p>
-        <p>Increasing the average duration of weeks sold is getting better and reflects increased confidence. In the first six months of an EM career, natural human behaviour is to accept deals outside of scope to get numbers on the board. Credit to Ivor and JP for the focused EM training, which have been a real hit.</p>
-        <p>Retaining this team into FY26/27 is one of the most commercially important things CP+R can do. They have a season of experience, a system they now understand, and a leader in James who knows what good looks like. The step change that comes in year two of a sales team is well evidenced. CP+R is in a strong position to capitalise on everything that has been built.</p>
-      </div>
-      <div class="coo-sig">
-        <div class="coo-sig-initial">JW</div>
-        <div>
-          <div class="coo-sig-name">Jamie Whitehouse</div>
-          <div class="coo-sig-title">Chief Operating Officer &middot; CP+R</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="forward-section">
-    <div class="section-label">Looking Ahead &middot; FY26/27</div>
-    <div class="forward-grid">
-      <div class="forward-card">
-        <div class="f-label">The Commitment</div>
-        <div class="f-headline">Retention is the priority. Full stop.</div>
-        <div class="f-body">Year one is the hardest. Every member of this team went through it &mdash; learning a new skill, in a new environment, to a new standard. That knowledge does not start over. It compounds. CP+R&rsquo;s commitment going into FY26/27 is to invest in the people who built this foundation and give them the conditions to take it further.</div>
-      </div>
-      <div class="forward-card">
-        <div class="f-label">The Opportunity</div>
-        <div class="f-headline">Year two is where the step change happens.</div>
-        <div class="f-body">A sales team&rsquo;s second year is consistently its breakout year. The systems are understood, the habits are forming, and the confidence is real. With James Porter leading the function and a team who have already proven they can build something from nothing, the platform for FY26/27 is stronger than it has ever been.</div>
-      </div>
-    </div>
-  </div>
+<div class="page-header">
+<div>
+<div class="page-tag">PEOPLE &middot; FY 25/26</div>
+<h1 class="page-title">The Team</h1>
+<div class="page-subtitle">CP+R is its people. Every number in this report has a name behind it.</div>
+</div>
+<div class="header-badges">
+<span class="badge badge-outline">FY 25/26</span>
+</div>
+</div>
+
+<div class="stat-strip">
+<div class="stat-cell">
+<div class="stat-label">Total Team</div>
+<div class="stat-value">19</div>
+<div class="stat-sub">Named contributors FY25/26</div>
+</div>
+<div class="stat-cell">
+<div class="stat-label">Referral Income</div>
+<div class="stat-value">&pound;1.01M</div>
+<div class="stat-sub">Generated this year</div>
+</div>
+<div class="stat-cell">
+<div class="stat-label">Athletes Served</div>
+<div class="stat-value">371</div>
+<div class="stat-sub">Programmes started</div>
+</div>
+<div class="stat-cell">
+<div class="stat-label">NACR Status</div>
+<div class="stat-value">GREEN</div>
+<div class="stat-sub">7/7 KPIs achieved</div>
+</div>
+</div>
+
+<div class="section-label">Leadership</div>
+<div class="team-grid">
+<div class="person-card featured">
+<div class="person-avatar">JW</div>
+<div class="person-name">Jamie Whitehouse</div>
+<div class="person-role">Chief Operating Officer</div>
+<div class="person-line">The connective tissue across every function this year. Partnerships, people, clinical standards, commercial growth &mdash; and building the EM function from scratch.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">IV</div>
+<div class="person-name">Ivor</div>
+<div class="person-role">Chief Executive Officer</div>
+<div class="person-line">Sets the vision and holds the company to its highest standard. The ambition behind everything CP+R does.</div>
+</div>
+</div>
+
+<div class="section-label">Finance &amp; Business</div>
+<div class="team-grid">
+<div class="person-card">
+<div class="person-avatar">AL</div>
+<div class="person-name">Allison</div>
+<div class="person-role">Financial Controller</div>
+<div class="person-line">Brings financial rigour and commercial clarity to every decision. The numbers in this report that matter most are hers.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">AN</div>
+<div class="person-name">Annabel</div>
+<div class="person-role">Business Performance Mentor</div>
+<div class="person-line">Joined in January bringing senior corporate experience from the private sector. Her external perspective sharpens CP+R&rsquo;s commercial thinking.</div>
+</div>
+</div>
+
+<div class="section-label">Clinical</div>
+<div class="team-grid">
+<div class="person-card">
+<div class="person-avatar">AG</div>
+<div class="person-name">Angela</div>
+<div class="person-role">Head of Nursing</div>
+<div class="person-line">The clinical backbone of CP+R. 100% VAT compliance, sub-12-hour sign-off times, and the consistency that keeps athletes safe.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">SO</div>
+<div class="person-name">Sam Olden</div>
+<div class="person-role">Head of Clinical</div>
+<div class="person-line">330 consultations in under five months. FY26/27 is his first full year &mdash; the best is still ahead.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">PH</div>
+<div class="person-name">Patrick Hicks</div>
+<div class="person-role">Lead Assessment Specialist</div>
+<div class="person-line">Committed to Saturday sessions part-time from August 2026. Brings specialist assessment expertise to the programme.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">MT</div>
+<div class="person-name">Matt Talbot</div>
+<div class="person-role">Assessment Centre Specialist &amp; CC</div>
+<div class="person-line">Stabilised Bath throughout the year. Provided continuity when it was needed most.</div>
+</div>
+</div>
+
+<div class="section-label">Operations &amp; Commercial</div>
+<div class="team-grid">
+<div class="person-card">
+<div class="person-avatar">EL</div>
+<div class="person-name">Ellen</div>
+<div class="person-role">Executive Assistant</div>
+<div class="person-line">97.3% contact rate across 917 referrals. Every athlete this year came through Ellen first. The number behind the numbers.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">DA</div>
+<div class="person-name">Daniella</div>
+<div class="person-role">Operational Performance Lead</div>
+<div class="person-line">Her NACR work was instrumental in achieving Green Status across all 7 KPIs.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">ED</div>
+<div class="person-name">Ellie Darwin</div>
+<div class="person-role">HR &amp; Talent Coordinator</div>
+<div class="person-line">Turns the FY25/26 HR infrastructure into a genuine people function. The foundation for how CP+R grows its team.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">LW</div>
+<div class="person-name">Lewis</div>
+<div class="person-role">Head of Talent &amp; Inspiration</div>
+<div class="person-line">Finds the people who make CP+R what it is and keeps the spirit alive.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">NC</div>
+<div class="person-name">Nicole</div>
+<div class="person-role">Content Producer</div>
+<div class="person-line">The brand story is sharper because of her. C pillar growth and athlete self-referral are partly her work.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">DV</div>
+<div class="person-name">David</div>
+<div class="person-role">Software Developer</div>
+<div class="person-line">One person. Every system. Every data point in this report. The invisible infrastructure that makes CP+R run.</div>
+</div>
+</div>
+
+<div class="section-label">Experience Managers</div>
+<div class="narrative">Five EMs. Zero prior sales experience. One full season. They built CP+R&rsquo;s commercial engine from scratch &mdash; and delivered &pound;595,637 in AX value doing it. James Porter was promoted to Head of Athlete Experience at W41. The rest go into FY26/27 with a season of experience, a system they understand, and a leader who knows what good looks like. Retention is the priority.</div>
+<div class="team-grid">
+<div class="person-card">
+<div class="person-avatar">JP</div>
+<div class="person-name">James Porter</div>
+<div class="person-role">Head of Athlete Experience</div>
+<div class="person-line">75% conversion. PV 2.56. Stepped up to lead the EM team at W41. His numbers made the decision straightforward.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">DM</div>
+<div class="person-name">David Martin</div>
+<div class="person-role">Experience Manager</div>
+<div class="person-line">65.1% conversion. Reliable and consistent across the full year &mdash; earns decisions rather than chases them.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">BP</div>
+<div class="person-name">Becky Price</div>
+<div class="person-role">Experience Manager</div>
+<div class="person-line">64.3% conversion. Highest athlete satisfaction feedback in the team. Sets the tone for what great athlete experience looks like.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">OH</div>
+<div class="person-name">Ollie Hagar</div>
+<div class="person-role">Experience Manager</div>
+<div class="person-line">60.9% conversion. &pound;5,256 avg athlete value &mdash; second highest in the team. Real commercial instinct for year one.</div>
+</div>
+<div class="person-card">
+<div class="person-avatar">MR</div>
+<div class="person-name">Megan Read</div>
+<div class="person-role">Experience Manager</div>
+<div class="person-line">54.3% conversion. &pound;5,369 avg athlete value &mdash; highest in the team. Her biggest year is still ahead of her.</div>
+</div>
+</div>
+
+<div class="page-footer">
+<div class="footer-text">CP+R &middot; People Dashboard &middot; FY 2025/26 &middot; 19 named contributors across leadership, clinical, operations and the EM team.</div>
+</div>
 </main>
 </body>
 </html>
