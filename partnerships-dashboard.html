@@ -470,6 +470,198 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 
 </div>
 
+<!-- ===== REFERRAL VOLUME SINCE LAUNCH SECTION ===== -->
+<section id="referral-volume-section" style="background:#1a1a1a;border-radius:12px;padding:32px;margin-top:24px;">
+  <div style="margin-bottom:8px;">
+    <span style="font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.45);">COMMERCIAL &middot; HISTORICAL</span>
+  </div>
+  <h2 id="rv-section-title" style="font-family:'Playfair Display',serif;font-size:36px;font-weight:900;font-style:italic;color:#fff;margin-bottom:16px;">Referral Volume Since Launch</h2>
+  <div id="rv-section-subtitle" style="border-left:3px solid #ffe512;padding-left:14px;margin-bottom:28px;">
+    <p style="font-size:14px;color:rgba(255,255,255,0.75);line-height:1.6;">8 financial years of referral data (Jun&ndash;May). Volume has grown 7&times; since FY19/20, with referrals now arriving consistently across all 12 months.</p>
+  </div>
+  <!-- KPI CARDS -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px;">
+    <div style="background:#242424;border-radius:8px;padding:20px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">TOTAL REFERRALS</div>
+      <div style="font-size:32px;font-weight:700;color:#fff;line-height:1;">4,431</div>
+      <div style="font-size:12px;color:#ffe512;margin-top:6px;font-weight:500;">FY2018/19 &ndash; FY2025/26</div>
+    </div>
+    <div style="background:#242424;border-radius:8px;padding:20px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">BEST FINANCIAL YEAR</div>
+      <div style="font-size:32px;font-weight:700;color:#fff;line-height:1;">FY25/26</div>
+      <div style="font-size:12px;color:#ffe512;margin-top:6px;font-weight:500;">967 referrals</div>
+    </div>
+    <div style="background:#242424;border-radius:8px;padding:20px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">STRONGEST QUARTER</div>
+      <div style="font-size:32px;font-weight:700;color:#fff;line-height:1;">Q4</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px;">Mar &ndash; May consistently</div>
+    </div>
+    <div style="background:#242424;border-radius:8px;padding:20px;">
+      <div style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;">QUIETEST MONTH</div>
+      <div style="font-size:32px;font-weight:700;color:#fff;line-height:1;">June</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:6px;">FY start dip each year</div>
+    </div>
+  </div>
+  <!-- TAB BUTTONS -->
+  <div style="display:flex;gap:8px;margin-bottom:20px;">
+    <button onclick="showRvTab('fy-volume')" id="rv-tab-fy-volume" style="padding:10px 20px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1.5px solid #ffe512;background:#ffe512;color:#1a1a1a;">FY VOLUME</button>
+    <button onclick="showRvTab('seasonality')" id="rv-tab-seasonality" style="padding:10px 20px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1.5px solid rgba(255,255,255,0.25);background:transparent;color:rgba(255,255,255,0.55);">SEASONALITY</button>
+    <button onclick="showRvTab('heatmap')" id="rv-tab-heatmap" style="padding:10px 20px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;border:1.5px solid rgba(255,255,255,0.25);background:transparent;color:rgba(255,255,255,0.55);">MONTHLY HEATMAP</button>
+  </div>
+  <!-- FY VOLUME CHART VIEW -->
+  <div id="rv-view-fy-volume">
+    <div style="background:#242424;border-radius:10px;padding:24px;margin-bottom:16px;">
+      <canvas id="fyVolumeChart" height="300"></canvas>
+    </div>
+    <div style="border-left:3px solid #44c8f5;padding:14px 18px;background:rgba(68,200,245,0.07);border-radius:0 6px 6px 0;">
+      <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">FY19/20 reflects reduced activity during the first half of the year, followed by a strong Q4 recovery. Every subsequent FY has delivered growth, with FY25/26 the strongest on record.</p>
+    </div>
+  </div>
+  <!-- SEASONALITY CHART VIEW -->
+  <div id="rv-view-seasonality" style="display:none;">
+    <div style="background:#242424;border-radius:10px;padding:24px;margin-bottom:16px;">
+      <canvas id="seasonalityChart" height="300"></canvas>
+    </div>
+    <div style="border-left:3px solid #44c8f5;padding:14px 18px;background:rgba(68,200,245,0.07);border-radius:0 6px 6px 0;">
+      <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">May, March and April are the three busiest months &mdash; a clear spring surge. June is the quietest month of the FY. A targeted campaign in late May could carry momentum into the FY start and smooth the annual dip.</p>
+    </div>
+  </div>
+  <!-- HEATMAP VIEW -->
+  <div id="rv-view-heatmap" style="display:none;">
+    <div style="background:#242424;border-radius:10px;padding:24px;margin-bottom:16px;overflow-x:auto;">
+      <table id="rv-heatmap-table" style="width:100%;border-collapse:separate;border-spacing:3px;font-size:11px;">
+        <thead>
+          <tr>
+            <th style="color:rgba(255,255,255,0.4);font-weight:600;padding:6px 4px;text-align:left;"></th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Jun</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Jul</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Aug</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Sep</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Oct</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Nov</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Dec</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Jan</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Feb</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Mar</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">Apr</th>
+            <th style="color:rgba(255,255,255,0.7);font-weight:600;padding:6px 8px;text-align:center;">May</th>
+          </tr>
+        </thead>
+        <tbody id="rv-heatmap-body"></tbody>
+      </table>
+    </div>
+    <div style="border-left:3px solid #44c8f5;padding:14px 18px;background:rgba(68,200,245,0.07);border-radius:0 6px 6px 0;">
+      <p style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6;">Early years show concentrated, spiky volume. By FY24/25 and FY25/26 almost every cell is dark &mdash; referrals now arrive consistently across all 12 months.</p>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+// ---- Referral Volume Tab Switcher ----
+var rvCharts = {};
+function showRvTab(tab) {
+  ['fy-volume','seasonality','heatmap'].forEach(function(t) {
+    document.getElementById('rv-view-' + t).style.display = 'none';
+    var btn = document.getElementById('rv-tab-' + t);
+    btn.style.background = 'transparent';
+    btn.style.color = 'rgba(255,255,255,0.55)';
+    btn.style.borderColor = 'rgba(255,255,255,0.25)';
+  });
+  document.getElementById('rv-view-' + tab).style.display = 'block';
+  var activeBtn = document.getElementById('rv-tab-' + tab);
+  activeBtn.style.background = '#ffe512';
+  activeBtn.style.color = '#1a1a1a';
+  activeBtn.style.borderColor = '#ffe512';
+  var titles = {'fy-volume':'Referral Volume Since Launch','seasonality':'Referral Seasonality','heatmap':'Monthly Referral Heatmap'};
+  var subtitles = {'fy-volume':'8 financial years of referral data (Jun–May). Volume has grown 7× since FY19/20, with referrals now arriving consistently across all 12 months.','seasonality':'Cumulative monthly referral volume across all financial years (Jun–May axis). Reveals where demand naturally peaks and dips within the year.','heatmap':'Referrals per month per financial year — darker blue = more referrals. Shows the shift from spiky early volume to a consistently high monthly cadence.'};
+  document.getElementById('rv-section-title').textContent = titles[tab];
+  document.getElementById('rv-section-subtitle').querySelector('p').textContent = subtitles[tab];
+  if (tab === 'fy-volume' && !rvCharts.fyVolume) { initFyVolumeChart(); }
+  if (tab === 'seasonality' && !rvCharts.seasonality) { initSeasonalityChart(); }
+  if (tab === 'heatmap') { initHeatmap(); }
+}
+function initFyVolumeChart() {
+  var ctx = document.getElementById('fyVolumeChart').getContext('2d');
+  rvCharts.fyVolume = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['FY18/19','FY19/20','FY20/21','FY21/22','FY22/23','FY23/24','FY24/25','FY25/26'],
+      datasets: [{data:[125,89,291,461,653,894,951,967],backgroundColor:'#5aabf0',borderRadius:4,borderSkipped:false}]
+    },
+    options: {
+      responsive:true,
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'rgba(255,255,255,0.6)',font:{size:11}}},
+        y:{grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'rgba(255,255,255,0.6)',font:{size:11}},beginAtZero:true,max:1100}
+      }
+    }
+  });
+}
+function initSeasonalityChart() {
+  var ctx = document.getElementById('seasonalityChart').getContext('2d');
+  var seasonData = [300,408,309,361,353,356,335,330,386,421,409,456];
+  var months = ['Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May'];
+  var colors = seasonData.map(function(v,i) {
+    if (i===11) return '#c8f53c';
+    if (i===9||i===10||i===1) return '#3ecfad';
+    if (v>=380) return '#5aabf0';
+    if (v>=350) return '#4488c8';
+    return '#2d5f8a';
+  });
+  rvCharts.seasonality = new Chart(ctx, {
+    type:'bar',
+    data:{labels:months,datasets:[{data:seasonData,backgroundColor:colors,borderRadius:4,borderSkipped:false}]},
+    options:{
+      responsive:true,
+      plugins:{legend:{display:false}},
+      scales:{
+        x:{grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'rgba(255,255,255,0.6)',font:{size:11}}},
+        y:{grid:{color:'rgba(255,255,255,0.06)'},ticks:{color:'rgba(255,255,255,0.6)',font:{size:11}},beginAtZero:false,min:200,max:500}
+      }
+    }
+  });
+}
+function initHeatmap() {
+  var heatmapData = [
+    {fy:'FY18/19',vals:[12,65,14,7,4,3,1,6,1,4,3,5]},
+    {fy:'FY19/20',vals:[4,4,5,7,6,3,0,0,0,10,37,13]},
+    {fy:'FY20/21',vals:[4,8,8,14,18,32,30,28,22,33,43,51]},
+    {fy:'FY21/22',vals:[32,33,14,53,40,30,42,29,37,57,38,56]},
+    {fy:'FY22/23',vals:[52,33,55,45,37,57,30,48,92,71,67,66]},
+    {fy:'FY23/24',vals:[66,79,63,72,78,69,70,65,85,77,82,88]},
+    {fy:'FY24/25',vals:[70,90,91,76,91,83,74,87,71,74,67,77]},
+    {fy:'FY25/26',vals:[60,96,59,87,79,79,88,67,78,99,75,100]}
+  ];
+  var allVals = heatmapData.reduce(function(a,r){return a.concat(r.vals);},[]);
+  var maxVal = Math.max.apply(null,allVals);
+  var tbody = document.getElementById('rv-heatmap-body');
+  tbody.innerHTML = '';
+  heatmapData.forEach(function(row) {
+    var tr = document.createElement('tr');
+    var th = document.createElement('th');
+    th.textContent = row.fy;
+    th.style.cssText = 'color:rgba(255,255,255,0.55);font-weight:600;padding:4px 8px;text-align:left;white-space:nowrap;font-size:11px;';
+    tr.appendChild(th);
+    row.vals.forEach(function(v) {
+      var td = document.createElement('td');
+      var intensity = v===0 ? 0 : v/maxVal;
+      var r = Math.round(20+intensity*50);
+      var g = Math.round(20+intensity*120);
+      var b = Math.round(60+intensity*180);
+      td.style.cssText = 'text-align:center;padding:6px 4px;border-radius:4px;font-size:11px;font-weight:600;min-width:38px;';
+      td.style.background = v===0 ? '#1a1a1a' : 'rgb('+r+','+g+','+b+')';
+      td.style.color = v===0 ? 'rgba(255,255,255,0.15)' : (intensity>0.4 ? '#fff' : 'rgba(255,255,255,0.8)');
+      td.textContent = v===0 ? '' : v;
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+}
+document.addEventListener('DOMContentLoaded', function() { initFyVolumeChart(); });
+</script>
+
 <script>
 function showView(name) {
   document.querySelectorAll('.pillar-view').forEach(v => v.classList.remove('active'));
