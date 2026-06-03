@@ -95,6 +95,14 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 .quote-attr{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:.05em;}
 .page-footer{border-top:2px solid var(--mid);padding-top:20px;margin-top:8px;}
 .footer-text{font-size:12px;color:var(--grey);line-height:1.6;}
+
+  .tab-nav{display:flex;gap:0;padding:0 48px;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
+  .tab-btn{position:relative;padding:18px 28px 15px;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;border:none;background:none;transition:all .2s;border-bottom:3px solid transparent;margin-bottom:-1px;}
+  .tab-btn:hover{color:rgba(255,255,255,0.7);}
+  .tab-btn.active{color:var(--yellow);border-bottom-color:var(--yellow);}
+  .tab-desc{display:block;font-size:9px;letter-spacing:.05em;text-transform:none;opacity:0.5;font-weight:400;margin-top:2px;}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
 </style>
 </head>
 <body>
@@ -121,11 +129,26 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     <div class="header-badges">
       <span class="badge badge-blue">⚡ AX VALUE £625,613</span>
       <span class="badge badge-green">✓ PLAN VALUE MET</span>
-      <span class="badge badge-outline">410 ACRs CONDUCTED</span>
+      <span class="badge badge-outline">424 ACRs CONDUCTED</span>
       <span class="badge badge-outline">244 CONVERTED</span>
     </div>
+  
+  <!-- TAB NAVIGATION -->
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('overview')" id="tab-overview">
+      Overview<span class="tab-desc">Full year summary</span>
+    </button>
+    <button class="tab-btn" onclick="showTab('planvalue')" id="tab-planvalue">
+      Plan Value<span class="tab-desc">Weekly plan value by EM</span>
+    </button>
+    <button class="tab-btn" onclick="showTab('conversion')" id="tab-conversion">
+      Conversion<span class="tab-desc">ACR to paid programme</span>
+    </button>
+    <button class="tab-btn" onclick="showTab('axvalue')" id="tab-axvalue">
+      Ax Value<span class="tab-desc">Assessment income &amp; RA compliance</span>
+    </button>
   </div>
-
+  <div class="tab-content active" id="content-overview">
   <!-- HERO STRIP -->
   <div class="hero-strip">
     <div class="hero-cell">
@@ -155,20 +178,20 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     </div>
     <div class="kpi-card missed">
       <div class="k-label">CONVERSION RATE · FY AVG</div>
-      <div class="k-value">61.1%</div>
+      <div class="k-value">61.5%</div>
       <div class="k-target">Target: 64%</div>
       <div class="k-status missed">✗ 3% below target</div>
     </div>
     <div class="kpi-card missed">
       <div class="k-label">RA COMPLIANCE · FY AVG</div>
-      <div class="k-value">67.3%</div>
+      <div class="k-value">67.2%</div>
       <div class="k-target">Target: 90%</div>
       <div class="k-status missed">✗ Significant gap</div>
     </div>
     <div class="kpi-card">
       <div class="k-label">AVG ACR VALUE</div>
       <div class="k-value">£4,845</div>
-      <div class="k-target">410 ACRs · 397 completed · 244 converted</div>
+      <div class="k-target">424 ACRs · 410 completed · 244 converted</div>
       <div class="k-status" style="color:var(--blue);">Plan value 2.09 across all EMs</div>
     </div>
   </div>
@@ -200,6 +223,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     </div>
   </div>
 
+  </div>
+
+  <div class="tab-content" id="content-planvalue">
   <!-- PLAN VALUE ARC + EM TABLE -->
   <div class="two-col">
     <div class="panel">
@@ -243,6 +269,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
       <div class="narrative" style="margin-top:12px;">Target line is 2.06. Yellow = handover point. Green = James Porter's stewardship post-handover.</div>
     </div>
 
+  </div>
+
+  <div class="tab-content" id="content-conversion">
     <div class="panel">
       <div class="panel-title">CONVERSION BY EM · 244 PAID CONVERSIONS FROM 397 COMPLETED ACRs</div>
       <table class="em-table">
@@ -306,11 +335,14 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
       <div class="quote-attr">Jamie Whitehouse · COO</div>
     </div>
 
+  </div>
+
+  <div class="tab-content" id="content-axvalue">
     <div class="panel">
       <div class="panel-title">RA COMPLIANCE · KEY CONTEXT</div>
       <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px;">
         <div>
-          <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--pink);line-height:1;">67.3%</div>
+          <div style="font-family:'Playfair Display',serif;font-size:48px;font-weight:900;color:var(--pink);line-height:1;">67.2%</div>
           <div style="font-size:11px;color:var(--grey);margin-top:4px;">FY average · Target: 90%</div>
         </div>
         <div style="text-align:right;">
@@ -318,7 +350,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
           <div style="font-size:11px;color:var(--grey);margin-top:4px;">Most significant<br>operational gap FY25/26</div>
         </div>
       </div>
-      <div class="narrative" style="margin-top:0;">RA compliance averaged 67.3% against a 90% target. A high volume of coach transitions created structural inconsistency that made this harder to control — and the EM team also needed to perform better here. Both are acknowledged. James Porter has RA compliance as a stated priority for FY26/27.</div>
+      <div class="narrative" style="margin-top:0;">RA compliance averaged 67.2% against a 90% target. A high volume of coach transitions created structural inconsistency that made this harder to control — and the EM team also needed to perform better here. Both are acknowledged. James Porter has RA compliance as a stated priority for FY26/27.</div>
     </div>
   </div>
 
@@ -327,6 +359,19 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     <div class="panel-title">LOOKING AHEAD · RETENTION IS THE PRIORITY</div>
     <p style="font-size:13px;color:var(--grey);line-height:1.7;">Retaining this EM team into FY26/27 is one of the most commercially important things CP+R can do. They have a season of experience, a system they now understand, and a leader in James who knows what good looks like. The step change that comes in year two of a sales team is well evidenced. CP+R is in a strong position to capitalise on everything that has been built.</p>
   </div>
+
+  </div>
+
+  <script>
+  function showTab(name) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const content = document.getElementById('content-' + name);
+    const btn = document.getElementById('tab-' + name);
+    if (content) content.classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+  </script>
 
   </main>
 </body>
