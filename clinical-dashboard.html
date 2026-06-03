@@ -93,6 +93,14 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 .outcome-card .oc-note{font-size:10px;color:var(--teal);font-weight:600;margin-top:4px;}
 .page-footer{border-top:2px solid var(--mid);padding-top:20px;margin-top:8px;}
 .footer-text{font-size:12px;color:var(--grey);line-height:1.6;}
+
+  .tab-nav{display:flex;gap:0;padding:0 48px;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
+  .tab-btn{position:relative;padding:18px 28px 15px;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;border:none;background:none;transition:all .2s;border-bottom:3px solid transparent;margin-bottom:-1px;}
+  .tab-btn:hover{color:rgba(255,255,255,0.7);}
+  .tab-btn.active{color:var(--pink);border-bottom-color:var(--pink);}
+  .tab-desc{display:block;font-size:9px;letter-spacing:.05em;text-transform:none;opacity:0.5;font-weight:400;margin-top:2px;}
+  .tab-content{display:none;}
+  .tab-content.active{display:block;}
 </style>
 </head>
 <body>
@@ -122,8 +130,20 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
       <span class="badge badge-outline">371 PATIENTS STARTED</span>
       <span class="badge badge-outline">✓ BACPR ACCREDITATION</span>
     </div>
+  
+</div>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('signoff')" id="tab-signoff">
+      Sign-off<span class="tab-desc">Clinical sign-off quality</span>
+    </button>
+    <button class="tab-btn" onclick="showTab('engagement')" id="tab-engagement">
+      Athlete Engagement<span class="tab-desc">Consultations &amp; education</span>
+    </button>
+    <button class="tab-btn" onclick="showTab('nacr')" id="tab-nacr">
+      NACR Accreditation<span class="tab-desc">All 7 standards met</span>
+    </button>
   </div>
-
+  <div class="tab-content active" id="content-signoff">
   <div class="hero-strip">
     <div class="hero-cell" style="grid-column:span 4;display:flex;gap:0;">
       <div style="flex:1;border-right:1.5px solid rgba(255,255,255,0.1);padding:22px 24px;">
@@ -152,6 +172,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     </div>
   </div>
 
+  </div>
+
+  <div class="tab-content" id="content-nacr">
   <div class="section-title">NACR STANDARDS · ALL 7 MET</div>
   <div class="nacr-kpi-grid">
     <div class="nacr-card">
@@ -205,6 +228,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     </div>
   </div>
 
+  </div>
+
+  <div class="tab-content" id="content-engagement">
   <div class="two-col">
     <div class="panel">
       <div class="section-title">ATHLETE ENGAGEMENT · FY TOTALS W1–50</div>
@@ -328,6 +354,19 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
   <div class="page-footer">
     <p class="footer-text">Achieving Green Status across all 7 NACR KPIs is the clinical benchmark that matters most. It confirms CP+R is delivering cardiac rehabilitation to the standard set by the national accreditation body. Programme outcome metrics (completion rate 57.1%, reassessment rate 71.7%) are tracked proactively but not yet scored by NACR — both are ahead of, or at, aspirational targets.</p>
   </div>
+  </div>
+
+  <script>
+  function showTab(name) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const content = document.getElementById('content-' + name);
+    const btn = document.getElementById('tab-' + name);
+    if (content) content.classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+  </script>
+
 </main>
 </body>
 </html>
