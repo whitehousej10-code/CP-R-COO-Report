@@ -87,6 +87,14 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 .narrative{background:var(--light);border-left:3px solid var(--blue);padding:14px 16px;font-size:13px;color:var(--grey);line-height:1.6;border-radius:0 3px 3px 0;margin-top:16px;}
 .page-footer{border-top:2px solid var(--mid);padding-top:20px;margin-top:8px;}
 .footer-text{font-size:12px;color:var(--grey);line-height:1.6;}
+
+.tab-nav{display:flex;gap:0;padding:0 48px;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
+.tab-btn{position:relative;padding:18px 28px 15px;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;border:none;background:none;transition:all .2s;border-bottom:3px solid transparent;margin-bottom:-1px;}
+.tab-btn:hover{color:rgba(255,255,255,0.7);}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);}
+.tab-desc{display:block;font-size:9px;letter-spacing:.05em;text-transform:none;opacity:0.5;font-weight:400;margin-top:2px;}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
 </style>
 </head>
 <body>
@@ -116,6 +124,18 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <span class="badge badge-outline">FY 25/26</span>
 </div>
 </div>
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('overview')" id="tab-overview">
+    Overview<span class="tab-desc">Full year summary</span>
+  </button>
+  <button class="tab-btn" onclick="showTab('funnel')" id="tab-funnel">
+    Funnel<span class="tab-desc">Referral to programme start</span>
+  </button>
+  <button class="tab-btn" onclick="showTab('speed')" id="tab-speed">
+    Speed of Onboarding<span class="tab-desc">Time from referral to payment</span>
+  </button>
+</div>
+<div class="tab-content active" id="content-overview">
 <div class="hero-strip">
 <div class="hero-cell">
 <div class="h-label">Referrals Received</div>
@@ -126,7 +146,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <div class="hero-cell">
 <div class="h-label">ACRs Conducted</div>
 <div class="h-value blue">424</div>
-<div class="h-sub">397 completed · 13 incomplete</div>
+<div class="h-sub">410 completed · 14 incomplete</div>
 <div class="h-delta">96.8% ACR completion rate</div>
 </div>
 <div class="hero-cell">
@@ -185,7 +205,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <div class="kpi-card green">
 <div class="k-label">ACR Completion Rate</div>
 <div class="k-value">96.8%</div>
-<div class="k-sub">397 of 410 ACRs completed</div>
+<div class="k-sub">410 of 424 ACRs completed</div>
 <div class="k-status good">✓ STRONG</div>
 </div>
 <div class="kpi-card yellow">
@@ -197,7 +217,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <div class="kpi-card green">
 <div class="k-label">Paid Conversion Rate</div>
 <div class="k-value">61.5%</div>
-<div class="k-sub">244 of 397 completed ACRs</div>
+<div class="k-sub">244 of 410 completed ACRs</div>
 <div class="k-status good">↑ FROM 58.2% FY24/25</div>
 </div>
 <div class="kpi-card green">
@@ -207,6 +227,11 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <div class="k-status good">✓ NEAR-COMPLETE</div>
 </div>
 </div>
+<div class="two-col">
+</div>
+</div>
+
+<div class="tab-content" id="content-funnel">
 <div class="two-col">
 <div class="panel">
 <div class="panel-title">Referral Volume by Pillar</div>
@@ -299,6 +324,31 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 </div>
 <div class="narrative">RA compliance measures whether athletes are onboarded with a Recommended Activity plan in place. At 67.3% vs 90%, this was the most significant operational gap of FY25/26. High coach transition volume was a structural contributor. James Porter has named RA compliance as a stated priority for FY26/27.</div>
 </div>
+</div>
+
+<div class="tab-content" id="content-speed">
+<div style="padding:32px 48px;">
+<div class="panel">
+<div class="panel-title">Speed of Onboarding &middot; FY25/26 Final</div>
+<div class="four-col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px;">
+<div class="kpi-card green">
+<div class="k-label">Referral &rarr; BHC</div>
+<div class="k-value">16.5 days</div>
+<div class="k-sub">Average time from referral received to BHC booked</div>
+</div>
+<div class="kpi-card blue">
+<div class="k-label">BHC &rarr; Initial Assessment</div>
+<div class="k-value">8.6 days</div>
+<div class="k-sub">Average time from BHC to IA appointment</div>
+</div>
+<div class="kpi-card yellow">
+<div class="k-label">Referral &rarr; Payment</div>
+<div class="k-value">66.9 days</div>
+<div class="k-sub">Average end-to-end journey from referral to first payment</div>
+</div>
+</div>
+<div class="narrative">The 16.5-day average from referral to BHC booking reflects strong operational throughput in a high-volume year (966 referrals). The 66.9-day end-to-end journey &mdash; referral to payment &mdash; is the key commercial metric: every day shortened here accelerates income recognition and improves athlete momentum into the programme. The 8.6-day BHC-to-IA gap is tight given assessment centre scheduling constraints. FY26/27 targets: Ref&rarr;BHC under 14 days, total journey under 60 days.</div>
+</div>
 <div class="panel">
 <div class="panel-title">FY26/27 Onboarding Targets</div>
 <div class="stat-row">
@@ -327,6 +377,19 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <div class="page-footer">
 <div class="footer-text">CP+R · Athlete Onboarding Dashboard · FY 2025/26 · ACR = Athlete Consultation Review · RA = Recommended Activity · Data covers W1–W50</div>
 </div>
+</div>
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  const content = document.getElementById('content-' + name);
+  const btn = document.getElementById('tab-' + name);
+  if (content) content.classList.add('active');
+  if (btn) btn.classList.add('active');
+}
+</script>
 </main>
 </body>
 </html>
