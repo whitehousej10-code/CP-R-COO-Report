@@ -167,6 +167,14 @@
     .arc-val{font-size:13px;font-weight:700;}
     .arc-track{height:8px;background:var(--mid);border-radius:4px;overflow:hidden;}
     .arc-fill{height:100%;border-radius:4px;}
+
+    .tab-nav{display:flex;gap:0;padding:0 48px;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
+    .tab-btn{position:relative;padding:18px 28px 15px;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;border:none;background:none;transition:all .2s;border-bottom:3px solid transparent;margin-bottom:-1px;}
+    .tab-btn:hover{color:rgba(255,255,255,0.7);}
+    .tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
+    .tab-desc{display:block;font-size:9px;letter-spacing:.05em;text-transform:none;opacity:0.5;font-weight:400;margin-top:2px;}
+    .tab-content{display:none;}
+    .tab-content.active{display:block;}
   </style>
 </head>
 <body>
@@ -225,7 +233,16 @@
       </div>
     </div>
 
-    <div class="hero-strip">
+<div class="tab-nav">
+    <button class="tab-btn active" onclick="showTab('delivery')" id="tab-delivery">
+      FY25/26 Delivery<span class="tab-desc">What was built this year</span>
+    </button>
+    <button class="tab-btn" onclick="showTab('roadmap')" id="tab-roadmap">
+      FY26/27 Roadmap<span class="tab-desc">What comes next</span>
+    </button>
+  </div>
+  <div class="tab-content active" id="content-delivery">
+  <div class="hero-strip">
       <div class="hero-cell">
         <div class="hero-label">Systems Live</div>
         <div class="hero-value yellow">6</div>
@@ -257,19 +274,19 @@
         </div>
         <div class="kpi-card blue">
           <div class="kpi-label">ACR System</div>
-          <div class="kpi-value" style="font-size:22px;">410</div>
+          <div class="kpi-value" style="font-size:22px;">424</div>
           <div class="kpi-sub">ACRs processed this year</div>
           <div class="kpi-status blue">96.8% completion rate</div>
         </div>
         <div class="kpi-card yellow">
           <div class="kpi-label">Referral Tracking</div>
-          <div class="kpi-value" style="font-size:22px;">895</div>
+          <div class="kpi-value" style="font-size:22px;">966</div>
           <div class="kpi-sub">Referrals logged &amp; tracked</div>
           <div class="kpi-status green">&#10003; 3 pillars tracked</div>
         </div>
         <div class="kpi-card pink">
           <div class="kpi-label">RA Compliance</div>
-          <div class="kpi-value" style="font-size:22px;">67.3%</div>
+          <div class="kpi-value" style="font-size:22px;">67.2%</div>
           <div class="kpi-sub">vs 90% target</div>
           <div class="kpi-status yellow">&#9651; Improvement needed</div>
         </div>
@@ -286,7 +303,7 @@
                 <div class="system-role">Commercial pipeline tracking</div>
               </div>
             </div>
-            <div class="system-desc">Tracks all incoming referrals across Hospital (A), Consultant (B) and Self-referral (C) pillars. Links referral source to ACR outcome, conversion and revenue. 895 referrals processed in FY25/26.</div>
+            <div class="system-desc">Tracks all incoming referrals across Hospital (A), Consultant (B) and Self-referral (C) pillars. Links referral source to ACR outcome, conversion and revenue. 966 referrals processed in FY25/26.</div>
             <div class="system-tags">
               <span class="system-tag live">Live</span>
               <span class="system-tag">&#163;1.01M revenue tracked</span>
@@ -301,7 +318,7 @@
                 <div class="system-role">Clinical onboarding tool</div>
               </div>
             </div>
-            <div class="system-desc">Supports Assessment Centre Reviews from booking through to completion. Managed 410 ACRs with 397 completions (96.8% rate). Links to NACR reporting and programme placement workflow.</div>
+            <div class="system-desc">Supports Assessment Centre Reviews from booking through to completion. Managed 424 ACRs with 397 completions (96.8% rate). Links to NACR reporting and programme placement workflow.</div>
             <div class="system-tags">
               <span class="system-tag live">Live</span>
               <span class="system-tag">NACR-integrated</span>
@@ -372,7 +389,7 @@
       </div>
 
       <div class="narrative">
-        Technology sits at the heart of CP+R&#39;s operational infrastructure. This year David delivered the full digital COO report &mdash; replacing static PDF outputs with an interactive dashboard suite that gives the leadership team live visibility across all functions. With 895 referrals tracked, 7/7 NACR KPIs met and EM performance data available in real time, the systems stack is working. The key focus for FY26/27 is RA compliance (currently 67.3% vs a 90% target) and scaling capacity ahead of a &#163;1.15M&ndash;&#163;1.35M growth target.
+        Technology sits at the heart of CP+R&#39;s operational infrastructure. FY25/26 closed with 966 referrals processed, 424 ACRs conducted, and &pound;1.14M in new referral income &mdash; all tracked in real time through systems David built and manages as a team of one. The full COO dashboard suite replaced static PDF outputs, giving the leadership team live visibility across all functions. 7/7 NACR KPIs achieved. EM performance, AX value (&#163;625,613), and clinical sign-off all visible end-to-end. The key focus for FY26/27 is RA compliance (67.2% vs a 90% target &mdash; the one area where systems need to drive behaviour change) and scaling infrastructure ahead of a &#163;1.15M&ndash;&#163;1.35M growth target.
       </div>
 
       <div class="two-col">
@@ -381,14 +398,14 @@
           <div class="status-row">
             <div>
               <div class="status-name">Referral Management</div>
-              <div class="status-detail">895 referrals, 3 pillars, &#163;1.01M tracked</div>
+              <div class="status-detail">966 referrals, 3 pillars, &#163;1.01M tracked</div>
             </div>
             <span class="status-badge live">Live</span>
           </div>
           <div class="status-row">
             <div>
               <div class="status-name">ACR Platform</div>
-              <div class="status-detail">410 ACRs, 96.8% completion</div>
+              <div class="status-detail">424 ACRs, 96.8% completion</div>
             </div>
             <span class="status-badge live">Live</span>
           </div>
@@ -416,7 +433,7 @@
           <div class="status-row">
             <div>
               <div class="status-name">RA Compliance Tracker</div>
-              <div class="status-detail">67.3% vs 90% target &mdash; improvement in progress</div>
+              <div class="status-detail">67.2% vs 90% target &mdash; improvement in progress</div>
             </div>
             <span class="status-badge dev">In Progress</span>
           </div>
@@ -432,11 +449,11 @@
         <div class="panel">
           <div class="panel-title">Data Volume &middot; FY25/26</div>
           <div class="arc-row">
-            <div class="arc-top"><span class="arc-label">Referrals processed</span><span class="arc-val">895</span></div>
+            <div class="arc-top"><span class="arc-label">Referrals processed</span><span class="arc-val">966</span></div>
             <div class="arc-track"><div class="arc-fill" style="width:89.5%;background:var(--green);"></div></div>
           </div>
           <div class="arc-row">
-            <div class="arc-top"><span class="arc-label">ACRs conducted</span><span class="arc-val">410</span></div>
+            <div class="arc-top"><span class="arc-label">ACRs conducted</span><span class="arc-val">424</span></div>
             <div class="arc-track"><div class="arc-fill" style="width:45.8%;background:var(--blue);"></div></div>
           </div>
           <div class="arc-row">
@@ -456,13 +473,77 @@
             <div class="arc-track"><div class="arc-fill" style="width:100%;background:var(--green);"></div></div>
           </div>
           <div class="arc-row">
-            <div class="arc-top"><span class="arc-label">RA compliance rate</span><span class="arc-val">67.3%</span></div>
-            <div class="arc-track"><div class="arc-fill" style="width:67.3%;background:var(--pink);"></div></div>
+            <div class="arc-top"><span class="arc-label">RA compliance rate</span><span class="arc-val">67.2%</span></div>
+            <div class="arc-track"><div class="arc-fill" style="width:67.2%;background:var(--pink);"></div></div>
           </div>
         </div>
       </div>
 
     </div>
   </div>
+  </div>
+
+  <div class="tab-content" id="content-roadmap">
+    <div style="padding:32px 48px;">
+      <div class="section-label">FY26/27 Technology Roadmap</div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px;">
+        <div class="kpi-card blue" style="border-top-color:var(--blue);">
+          <div class="kpi-label">Hub 2.0</div>
+          <div class="kpi-value" style="font-size:22px;">Q1&ndash;Q2</div>
+          <div class="kpi-sub">Full rebuild of athlete hub platform with enhanced UX and data capture</div>
+          <div class="system-tag" style="margin-top:8px;display:inline-block;">In Design</div>
+        </div>
+        <div class="kpi-card green" style="border-top-color:var(--green);">
+          <div class="kpi-label">Food Diary App</div>
+          <div class="kpi-value" style="font-size:22px;">Q2&ndash;Q3</div>
+          <div class="kpi-sub">Digital nutrition tracking for athletes to replace paper-based logging</div>
+          <div class="system-tag" style="margin-top:8px;display:inline-block;">In Design</div>
+        </div>
+        <div class="kpi-card yellow" style="border-top-color:var(--yellow);">
+          <div class="kpi-label">Security &amp; Compliance</div>
+          <div class="kpi-value" style="font-size:22px;">Q1</div>
+          <div class="kpi-sub">Data security review, access controls, GDPR audit and documentation</div>
+          <div class="system-tag" style="margin-top:8px;display:inline-block;">Scoped</div>
+        </div>
+        <div class="kpi-card pink" style="border-top-color:var(--pink);">
+          <div class="kpi-label">RA Compliance System</div>
+          <div class="kpi-value" style="font-size:22px;">Q1</div>
+          <div class="kpi-sub">Automated RA compliance tracking to drive 67.2% &rarr; 90% target</div>
+          <div class="system-tag" style="margin-top:8px;display:inline-block;">Priority</div>
+        </div>
+      </div>
+      <div class="section-label">FY25/26 Delivery Summary</div>
+      <div class="kpi-grid" style="grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:24px;">
+        <div class="kpi-card green" style="border-top-color:var(--green);">
+          <div class="kpi-label">Payment Portal</div>
+          <div class="kpi-value" style="font-size:18px;">&#10003; Live</div>
+          <div class="kpi-sub">Athlete payment processing live and processing programme fees</div>
+        </div>
+        <div class="kpi-card green" style="border-top-color:var(--green);">
+          <div class="kpi-label">Hub CRM</div>
+          <div class="kpi-value" style="font-size:18px;">&#10003; Live</div>
+          <div class="kpi-sub">Athlete relationship management system live and tracking all interactions</div>
+        </div>
+        <div class="kpi-card blue" style="border-top-color:var(--blue);">
+          <div class="kpi-label">COO Dashboard Suite</div>
+          <div class="kpi-value" style="font-size:18px;">&#10003; Live</div>
+          <div class="kpi-sub">6 interactive dashboards replacing static PDF reports &mdash; this report</div>
+        </div>
+      </div>
+      <div class="narrative">FY25/26 was the year CP+R&rsquo;s technology stack came of age. David, operating as a one-person engineering team, delivered the payment portal, Hub CRM, and the full COO dashboard suite &mdash; three projects that would typically require a team. The roadmap for FY26/27 is ambitious but clear: Hub 2.0 takes the athlete experience digital, the food diary app adds a high-demand wellness feature, and security and compliance work ensures the infrastructure is enterprise-ready. The most operationally critical priority is RA compliance automation &mdash; the gap between 67.2% and the 90% target can only be closed with system-level prompts and enforcement, not manual process.</div>
+    </div>
+  </div>
+
+  <script>
+  function showTab(name) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    const content = document.getElementById('content-' + name);
+    const btn = document.getElementById('tab-' + name);
+    if (content) content.classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+  </script>
+
 </body>
 </html>
