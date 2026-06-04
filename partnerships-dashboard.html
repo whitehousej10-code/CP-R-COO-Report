@@ -99,6 +99,7 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 .rv-panel.active{display:block;}
 .rv-panel-title{font-family:"Barlow Condensed",sans-serif;font-size:30px;font-weight:900;text-transform:uppercase;color:#fff;letter-spacing:.5px;margin-bottom:6px;}
 .rv-panel-sub{font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:28px;padding-left:14px;border-left:3px solid var(--yellow);}
+  #fyVolumeChart,#seasonalityChart{height:340px;}
 </style>
 </head>
 <body>
@@ -435,6 +436,7 @@ function initFyVolumeChart() {
     },
     options: {
       responsive:true,
+            maintainAspectRatio:false,
       plugins:{ legend:{display:false} },
       scales:{
         x:{ grid:{color:'rgba(255,255,255,0.06)'}, ticks:{color:'rgba(255,255,255,0.6)',font:{size:12}} },
@@ -454,6 +456,7 @@ function initSeasonalityChart() {
     data:{ labels:months, datasets:[{ data:data, backgroundColor:colors, borderRadius:6, borderSkipped:false }] },
     options:{
       responsive:true,
+            maintainAspectRatio:false,
       plugins:{ legend:{display:false} },
       scales:{
         x:{ grid:{color:'rgba(255,255,255,0.06)'}, ticks:{color:'rgba(255,255,255,0.6)',font:{size:12}} },
