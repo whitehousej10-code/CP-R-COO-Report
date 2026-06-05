@@ -30,6 +30,17 @@ function activateChartView(root, viewId) {
   document.dispatchEvent(new CustomEvent("chartview:change", { detail: { viewId, root } }));
 }
 
+function isInsideHiddenPanel(el) {
+  let node = el.parentElement;
+  while (node) {
+    if (node.classList && node.classList.contains("tab-panel") && !node.classList.contains("is-active")) {
+      return true;
+    }
+    node = node.parentElement;
+  }
+  return false;
+}
+
 function initTabGroup(tabsEl) {
   const group = tabsEl.dataset.tabs;
   const activeBtn = tabsEl.querySelector(".tab-btn.is-active") ?? tabsEl.querySelector(".tab-btn");
@@ -46,9 +57,7 @@ function handleClick(event) {
       const root = document.getElementById("page-root");
       if (root) {
         root.querySelectorAll("[data-tabs]").forEach((el) => {
-          // only init groups inside newly-active panels
-          const panel = el.closest("[data-tab-group]");
-          if (panel && panel.classList.contains("is-active")) {
+          if (!isInsideHiddenPanel(el)) {
             initTabGroup(el);
           }
         });
@@ -88,7 +97,9 @@ export function initTabs(root = document.getElementById("page-root")) {
   instances.set(root, handleClick);
 
   root.querySelectorAll("[data-tabs]").forEach((tabsEl) => {
-    initTabGroup(tabsEl);
+    if (!isInsideHiddenPanel(tabsEl)) {
+      initTabGroup(tabsEl);
+    }
   });
 }
 
