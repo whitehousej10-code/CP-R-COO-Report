@@ -487,7 +487,7 @@ function initHeatmap() {
     var th = document.createElement('th');
     th.textContent = row.fy;
     th.style.cssText = 'color:rgba(255,255,255,0.5);font-weight:600;padding:5px 10px;text-align:left;white-space:nowrap;font-size:11px;';
-    tr.appendChild(th);h
+    tr.appendChild(th);
     row.vals.forEach(function(v) {
       var td = document.createElement('td');
       var intensity = v === 0 ? 0 : v/maxV;
