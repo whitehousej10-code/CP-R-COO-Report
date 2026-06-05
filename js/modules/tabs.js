@@ -1,4 +1,5 @@
 const instances = new Map();
+const initializedGroups = new Set();
 
 function activateTab(group, tabId) {
   document.querySelectorAll(`[data-tabs="${group}"] .tab-btn`).forEach((btn) => {
@@ -30,19 +31,10 @@ function activateChartView(root, viewId) {
   document.dispatchEvent(new CustomEvent("chartview:change", { detail: { viewId, root } }));
 }
 
-function isInsideHiddenPanel(el) {
-  let node = el.parentElement;
-  while (node) {
-    if (node.classList && node.classList.contains("tab-panel") && !node.classList.contains("is-active")) {
-      return true;
-    }
-    node = node.parentElement;
-  }
-  return false;
-}
-
 function initTabGroup(tabsEl) {
   const group = tabsEl.dataset.tabs;
+  if (initializedGroups.has(group)) return;
+  initializedGroups.add(group);
   const activeBtn = tabsEl.querySelector(".tab-btn.is-active") ?? tabsEl.querySelector(".tab-btn");
   if (activeBtn) activateTab(group, activeBtn.dataset.tab);
 }
@@ -50,16 +42,15 @@ function initTabGroup(tabsEl) {
 function handleClick(event) {
   const tabBtn = event.target.closest(".tab-btn[data-tab]");
   if (tabBtn) {
-    const group = tabBtn.closest("[data-tabs]")?.dataset.tabs;
+    const tabsEl = tabBtn.closest("[data-tabs]");
+    const group = tabsEl?.dataset.tabs;
     if (group) {
       activateTab(group, tabBtn.dataset.tab);
-      // initialise any nested tab groups that just became visible
+      // After activating, init any nested tab groups now visible
       const root = document.getElementById("page-root");
       if (root) {
-        root.querySelectorAll("[data-tabs]").forEach((el) => {
-          if (!isInsideHiddenPanel(el)) {
-            initTabGroup(el);
-          }
+        root.querySelectorAll(`[data-tab-group="${group}"][data-panel="${tabBtn.dataset.tab}"] [data-tabs]`).forEach((el) => {
+          initTabGroup(el);
         });
       }
     }
@@ -93,11 +84,14 @@ function handleClick(event) {
 
 export function initTabs(root = document.getElementById("page-root")) {
   if (!root || instances.has(root)) return;
+  initializedGroups.clear();
   root.addEventListener("click", handleClick);
   instances.set(root, handleClick);
 
+  // Only init top-level tab groups (not nested inside other tab panels)
   root.querySelectorAll("[data-tabs]").forEach((tabsEl) => {
-    if (!isInsideHiddenPanel(tabsEl)) {
+    const parentPanel = tabsEl.closest("[data-tab-group]");
+    if (!parentPanel) {
       initTabGroup(tabsEl);
     }
   });
@@ -109,6 +103,7 @@ export function destroyTabs(root = document.getElementById("page-root")) {
     root.removeEventListener("click", handler);
     instances.delete(root);
   }
+  initializedGroups.clear();
 }
 
 export { activateTab, activateSubpage, activateChartView };
