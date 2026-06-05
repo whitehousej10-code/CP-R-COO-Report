@@ -1,0 +1,74 @@
+<div data-route-id="referrals" data-accent="yellow" data-page-title="CP+R · Referrals">
+<div class="page-content">
+
+  <div class="page-banner">
+    <div class="page-tag">Commercial · Historical</div>
+    <div class="page-title">Referral volume <span>since the Hub launched.</span></div>
+    <div class="page-subtitle">8 financial years of referral data (Jun–May) · Volume has grown 7× since FY19/20</div>
+  </div>
+  <div class="rv-hero">
+    <div class="rv-kpi">
+      <div class="rv-kpi-label">Total Referrals</div>
+      <div class="rv-kpi-value">4,431</div>
+      <div class="rv-kpi-sub">FY2018/19 – FY2025/26</div>
+    </div>
+    <div class="rv-kpi">
+      <div class="rv-kpi-label">Best Financial Year</div>
+      <div class="rv-kpi-value">FY25/26</div>
+      <div class="rv-kpi-sub">967 referrals</div>
+    </div>
+    <div class="rv-kpi">
+      <div class="rv-kpi-label">Strongest Quarter</div>
+      <div class="rv-kpi-value">Q4</div>
+      <div class="rv-kpi-sub">Mar – May consistently</div>
+    </div>
+    <div class="rv-kpi">
+      <div class="rv-kpi-label">Quietest Month</div>
+      <div class="rv-kpi-value">June</div>
+      <div class="rv-kpi-sub">FY start dip each year</div>
+    </div>
+  </div>
+  <div class="chart-selector">
+    <button type="button" class="chart-selector-btn is-active" data-chart-select="fy-volume">
+      <span class="chart-selector-icon">📊</span>
+      <div class="chart-selector-label">FY Volume</div>
+      <div class="chart-selector-desc">Annual referral totals from FY18/19 to FY25/26. See how volume has grown 7× over 8 years.</div>
+    </button>
+    <button type="button" class="chart-selector-btn" data-chart-select="seasonality">
+      <span class="chart-selector-icon">📅</span>
+      <div class="chart-selector-label">Seasonality</div>
+      <div class="chart-selector-desc">Cumulative monthly volume across all years. Reveals when demand peaks and dips within the year.</div>
+    </button>
+    <button type="button" class="chart-selector-btn" data-chart-select="heatmap">
+      <span class="chart-selector-icon">🗓️</span>
+      <div class="chart-selector-label">Monthly Heatmap</div>
+      <div class="chart-selector-desc">Referrals per month per FY — darker = more. Shows shift from spiky early volume to consistent cadence.</div>
+    </button>
+  </div>
+  <div class="page-content">
+    <div class="chart-card">
+      <div class="chart-view is-active" data-chart-view="fy-volume">
+        <div class="chart-card-title">Annual Referral Volume</div>
+        <div class="chart-card-sub">FY19/20 reflects reduced activity in H1, followed by strong Q4 recovery. Every subsequent FY has delivered growth — FY25/26 the strongest on record.</div>
+        <div class="chart-wrap"><canvas id="fyVolumeChart" data-chart="fyVolume" data-chart-src="data/partnerships-charts.json"></canvas></div>
+      </div>
+      <div class="chart-view" data-chart-view="seasonality">
+        <div class="chart-card-title">Referral Seasonality</div>
+        <div class="chart-card-sub">May, March and April are the three busiest months — a clear spring surge. June is the quietest month. A late-May campaign could carry momentum into the FY start.</div>
+        <div class="chart-wrap"><canvas id="seasonalityChart" data-chart="seasonality" data-chart-src="data/partnerships-charts.json"></canvas></div>
+      </div>
+      <div class="chart-view" data-chart-view="heatmap">
+        <div class="chart-card-title">Monthly Referral Heatmap</div>
+        <div class="chart-card-sub">Early years show concentrated, spiky volume. By FY24/25 and FY25/26 almost every cell is dark — referrals now arrive consistently across all 12 months.</div>
+        <div style="overflow-x:auto;">
+          <table class="data-table data-table--heatmap" data-heatmap="data/partnerships-heatmap.json">
+            <thead><tr><th></th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
