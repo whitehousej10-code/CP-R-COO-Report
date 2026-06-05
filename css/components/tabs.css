@@ -1,50 +1,65 @@
+/* ─── Top-level in-tabs (Referrals / Income Pillars) ─── */
 .tab-nav {
   display: flex;
-  gap: 0;
-  padding: 0 48px;
+  gap: 8px;
+  padding: 10px 48px;
   background: var(--black);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.12);
   flex-shrink: 0;
   overflow-x: auto;
+  align-items: flex-end;
 }
 
 .tab-btn {
   position: relative;
-  padding: 18px 28px 15px;
+  padding: 12px 24px 10px;
   font-family: "DM Sans", sans-serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.4);
-  cursor: pointer;
-  border: none;
-  background: none;
-  transition: color 0.2s, border-color 0.2s;
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-bottom: 3px solid transparent;
-  margin-bottom: -1px;
+  border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: -2px;
   white-space: nowrap;
 }
 
 .tab-btn:hover {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+  border-bottom-color: rgba(255, 229, 18, 0.55);
+  box-shadow: 0 -3px 10px rgba(255, 229, 18, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .tab-btn.is-active {
   color: var(--accent);
+  background: rgba(255, 229, 18, 0.12);
+  border-color: rgba(255, 229, 18, 0.4);
   border-bottom-color: var(--accent);
+  box-shadow: 0 -3px 14px rgba(255, 229, 18, 0.18), inset 0 1px 0 rgba(255, 229, 18, 0.18);
 }
 
 .tab-desc {
   display: block;
   font-size: 9px;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: none;
-  opacity: 0.5;
+  opacity: 0.6;
   font-weight: 400;
-  margin-top: 2px;
+  margin-top: 3px;
 }
 
+.tab-btn.is-active .tab-desc {
+  opacity: 0.8;
+}
+
+/* ─── Panels ─── */
 .tab-panel {
   display: none;
 }
@@ -53,6 +68,46 @@
   display: block;
 }
 
+/* ─── A-B-C sub-tabs (inside .tab-panel, on light background) ─── */
+.tab-panel .tab-nav {
+  gap: 6px;
+  padding: 12px 48px;
+  background: #f0f0ee;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  align-items: flex-end;
+}
+
+.tab-panel .tab-btn {
+  padding: 10px 22px 9px;
+  color: rgba(35, 31, 32, 0.5);
+  background: rgba(35, 31, 32, 0.06);
+  border: 1px solid rgba(35, 31, 32, 0.14);
+  border-bottom: 3px solid transparent;
+  border-radius: 6px 6px 0 0;
+  box-shadow: none;
+}
+
+.tab-panel .tab-btn:hover {
+  color: rgba(35, 31, 32, 0.85);
+  background: rgba(35, 31, 32, 0.11);
+  border-color: rgba(35, 31, 32, 0.25);
+  border-bottom-color: rgba(255, 229, 18, 0.75);
+  box-shadow: 0 -2px 8px rgba(255, 229, 18, 0.2);
+}
+
+.tab-panel .tab-btn.is-active {
+  color: #231f20;
+  background: #ffe512;
+  border-color: rgba(200, 180, 0, 0.6);
+  border-bottom-color: #c8b400;
+  box-shadow: 0 -3px 10px rgba(255, 229, 18, 0.3);
+}
+
+.tab-panel .tab-btn.is-active .tab-desc {
+  opacity: 0.75;
+}
+
+/* ─── Subnav (other pages) ─── */
 .subnav {
   display: flex;
   gap: 8px;
