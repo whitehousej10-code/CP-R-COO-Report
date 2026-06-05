@@ -1,77 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CP+R · People</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{--black:#231f20;--yellow:#ffe512;--blue:#44c8f5;--green:#4db848;--pink:#e3407f;--light:#f7f7f5;--mid:#ebebeb;--grey:#58595b;--sidebar:72px;}
-body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black);display:flex;height:100vh;overflow:hidden;}
-.sidebar{width:var(--sidebar);background:var(--black);display:flex;flex-direction:column;align-items:center;padding:20px 0;flex-shrink:0;z-index:10;}
-.sidebar-logo{font-family:"Playfair Display",serif;font-size:13px;font-weight:900;color:var(--yellow);letter-spacing:-1px;margin-bottom:28px;text-align:center;line-height:1;}
-.sidebar-logo span{color:#fff;font-weight:400;letter-spacing:.15em;text-transform:uppercase;display:block;font-size:9px;margin-top:3px;font-family:"DM Sans",sans-serif;}
-.nav-items{display:flex;flex-direction:column;align-items:center;gap:4px;widthh:100%;flex:1;}
-.nav-item{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 0 8px;cursor:pointer;color:rgba(255,255,255,0.4);font-size:9px;font-weight:500;letter-spacing:.3px;text-transform:uppercase;text-decoration:none;border-left:3px solid transparent;}
-.nav-item:hover{color:rgba(255,255,255,0.8);}
-.nav-item.active{color:var(--yellow);border-left-color:var(--yellow);background:rgba(255,229,18,0.06);}
-.nav-icon{font-size:18px;line-height:1;}
-.main{flex:1;overflow-y:auto;padding:32px 36px;}
-.page-header{margin-bottom:28px;border-bottom:2px solid var(--mid);padding-bottom:20px;display:flex;align-items:flex-end;justify-content:space-between;}
-.header-badges{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
-.badge{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;}
-.badge-outline{border:1.5px solid var(--mid);color:var(--grey);}
-.page-tag{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:6px;}
-.page-title{font-family:"Playfair Display",serif;font-size:36px;font-weight:900;color:var(--black);line-height:1.1;}
-.page-subtitle{font-size:14px;color:var(--grey);margin-top:6px;line-height:1.5;}
-.section-label{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-bottom:14px;margin-top:32px;padding-bottom:8px;border-bottom:2px solid var(--mid);}
-.section-label:first-of-type{margin-top:0;}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:8px;}
-.person-card{background:#fff;border:1.5px solid var(--mid);border-radius:3px;padding:20px;}
-.person-card.featured{background:var(--black);border-color:var(--black);}
-.person-avatar{width:44px;height:44px;border-radius:50%;background:var(--mid);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",serif;font-size:16px;font-weight:900;color:var(--black);margin-bottom:12px;flex-shrink:0;}
-.person-card.featured .person-avatar{background:var(--yellow);color:var(--black);}
-.person-name{font-family:"Playfair Display",serif;font-size:16px;font-weight:900;color:var(--black);line-height:1.1;margin-bottom:4px;}
-.person-card.featured .person-name{color:#fff;}
-.person-role{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
-.person-card.featured .person-role{color:rgba(255,255,255,0.5);}
-.person-line{font-size:12px;color:var(--grey);line-height:1.5;}
-.person-card.featured .person-line{color:rgba(255,255,255,0.6);}
-.narrative{background:var(--light);border-left:3px solid var(--yellow);padding:14px 16px;font-size:13px;color:var(--grey);line-height:1.6;border-radius:0 3px 3px 0;margin:24px 0;}
-.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--black);border-radius:3px;overflow:hidden;margin-bottom:28px;}
-.stat-cell{padding:18px 20px;border-right:1px solid rgba(255,255,255,0.08);}
-.stat-cell:last-child{border-right:none;}
-.stat-label{font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px;}
-.stat-value{font-family:"Playfair Display",serif;font-size:28px;font-weight:900;color:var(--yellow);line-height:1;}
-.stat-sub{font-size:11px;color:rgba(255,255,255,0.35);margin-top:4px;}
-.page-footer{border-top:2px solid var(--mid);padding-top:20px;margin-top:32px;}
-.footer-text{font-size:12px;color:var(--grey);line-height:1.6;}
-
-.tab-nav{display:flex;gap:0;padding:0 48px;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
-.tab-btn{position:relative;padding:18px 28px 15px;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;border:none;background:none;transition:all .2s;border-bottom:3px solid transparent;margin-bottom:-1px;}
-.tab-btn:hover{color:rgba(255,255,255,0.7);}
-.tab-btn.active{color:var(--yellow);border-bottom-color:var(--yellow);}
-.tab-desc{display:block;font-size:9px;letter-spacing:.05em;text-transform:none;opacity:0.5;font-weight:400;margin-top:2px;}
-.tab-content{display:none;}
-.tab-content.active{display:block;}
-</style>
-</head>
-<body>
-<nav class="sidebar">
-<div class="sidebar-logo">CP+R<span>FY 25/26</span></div>
-<div class="nav-items">
-<a href="index.html" class="nav-item"><span class="nav-icon">&#127968;</span>OVERVIEW</a>
-<a href="partnerships-dashboard.html" class="nav-item"><span class="nav-icon">&#129309;</span>PARTNERS</a>
-<a href="clinical-dashboard.html" class="nav-item"><span class="nav-icon">&#127973;</span>CLINICAL</a>
-<a href="onboarding-dashboard.html" class="nav-item"><span class="nav-icon">&#128203;</span>ONBOARD</a>
-<a href="em-performance-dashboard.html" class="nav-item"><span class="nav-icon">&#9889;</span>EM PERF</a>
-<div class="nav-item active"><span class="nav-icon">&#128101;</span>PEOPLE</div>
-<a href="tech-dashboard.html" class="nav-item"><span class="nav-icon">&#128187;</span>TECH</a>
-<a href="fy2627-dashboard.html" class="nav-item"><span class="nav-icon">&#128301;</span>FY26/27</a>
-</div>
-</nav>
-<main class="main">
+<div data-route-id="people" data-accent="yellow" data-page-title="CP+R · People">
+<div class="page-content">
 <div class="page-header">
 <div>
 <div class="page-tag">PEOPLE &middot; FY 25/26</div>
@@ -83,19 +11,19 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 </div>
 </div>
 
-<div class="tab-nav">
-  <button class="tab-btn active" onclick="showTab('headcount')" id="tab-headcount">
+<nav class="tab-nav" data-tabs="people" aria-label="Section tabs">
+  <button type="button" class="tab-btn is-active" data-tab="headcount">
     Headcount<span class="tab-desc">Team size &amp; tenure</span>
   </button>
-  <button class="tab-btn" onclick="showTab('leavers')" id="tab-leavers">
+  <button type="button" class="tab-btn" data-tab="leavers">
     Leavers<span class="tab-desc">FY25/26 departures</span>
   </button>
-  <button class="tab-btn" onclick="showTab('priorities')" id="tab-priorities">
+  <button type="button" class="tab-btn" data-tab="priorities">
     FY26/27 Priorities<span class="tab-desc">People &amp; culture focus</span>
   </button>
-</div>
+</nav>
 
-<div class="tab-content active" id="content-headcount">
+<section data-panel="headcount" data-tab-group="people" class="tab-panel is-active">
 <div class="stat-strip">
 <div class="stat-cell">
 <div class="stat-label">Total Team</div>
@@ -257,9 +185,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <div class="page-footer">
 <div class="footer-text">CP+R &middot; People Dashboard &middot; FY 2025/26 &middot; 67 people. The team behind every number in this report.</div>
 </div>
-</div>
+</section>
 
-<div class="tab-content" id="content-leavers">
+<section data-panel="leavers" data-tab-group="people" class="tab-panel">
   <div style="padding:32px 48px;">
     <div class="section-label">FY25/26 Leavers</div>
     <div class="stat-strip">
@@ -304,9 +232,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     </div>
     <div class="narrative">CP+R grew from 53 to a peak of 70 people during FY25/26, ending the year at 67. Significant turnover was a feature of the year &mdash; particularly in the EM function. Of those who remain, 43% joined in FY25/26 itself, making retention and onboarding into the culture a critical priority heading into FY26/27. The 2+ year cohort (42%) provides continuity and institutional knowledge as the team scales.</div>
   </div>
-</div>
+</section>
 
-<div class="tab-content" id="content-priorities">
+<section data-panel="priorities" data-tab-group="people" class="tab-panel">
   <div style="padding:32px 48px;">
     <div class="section-label">FY26/27 People &amp; Culture Priorities</div>
     <div class="stat-strip">
@@ -334,17 +262,6 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     <div class="section-label">Key People Initiatives FY26/27</div>
     <div class="narrative"><strong>Retention:</strong> Five EMs go into FY26/27 with a full season of experience. James Porter steps up as Head of Athlete Experience. Retention of this cohort is the highest priority &mdash; each EM represents months of ramp-up time and athlete relationship capital. Target: zero involuntary EM departures in H1. <br><br><strong>HR Structure:</strong> Ellie Dar&rsquo;s HR coordinator role transitions into a genuine people function &mdash; onboarding frameworks, performance review cycles, and culture documentation. The infrastructure built in FY25/26 becomes the foundation for how a 67-person business runs and grows. <br><br><strong>Development:</strong> Clear progression pathways for EMs from associate through to senior. Becky Price and Ollie Hagar both have the potential to develop into more senior roles with the right structure around them. <br><br><strong>Culture:</strong> With 43% of the team having joined in FY25/26, codifying what CP+R stands for &mdash; how it treats its people, how it makes decisions, what great looks like &mdash; becomes essential infrastructure as the business scales toward 80+ people.</div>
   </div>
+</section>
 </div>
-</main>
-<script>
-function showTab(name) {
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  const content = document.getElementById('content-' + name);
-  const btn = document.getElementById('tab-' + name);
-  if (content) content.classList.add('active');
-  if (btn) btn.classList.add('active');
-}
-</script>
-</body>
-</html>
+</div>

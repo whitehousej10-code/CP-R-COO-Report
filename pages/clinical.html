@@ -1,125 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CP+R · Clinical Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{
-  --black:#231f20;
-  --yellow:#ffe512;
-  --blue:#44c8f5;
-  --green:#4db848;
-  --pink:#e3407f;
-  --teal:#009db4;
-  --light:#f7f7f5;
-  --mid:#ebebeb;
-  --grey:#58595b;
-  --sidebar:72px;
-}
-body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black);display:flex;height:100vh;overflow:hidden;}
-.sidebar{width:var(--sidebar);background:var(--black);display:flex;flex-direction:column;align-items:center;padding:20px 0;gap:0;flex-shrink:0;z-index:10;}
-.sidebar-logo{font-family:"Playfair Display",serif;font-size:13px;font-weight:900;color:var(--yellow);letter-spacing:-1px;margin-bottom:28px;text-align:center;line-height:1;}
-.sidebar-logo span{color:#fff;font-weight:400;letter-spacing:.15em;text-transform:uppercase;display:block;font-size:9px;margin-top:3px;font-family:"DM Sans",sans-serif;}
-.nav-items{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;flex:1;}
-.nav-item{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 0 8px;cursor:pointer;color:rgba(255,255,255,0.4);font-size:9px;font-weight:500;letter-spacing:.3px;text-transform:uppercase;text-decoration:none;border-left:3px solid transparent;}
-.nav-item:hover{color:rgba(255,255,255,0.8);}
-.nav-item.active{color:var(--yellow);border-left-color:var(--yellow);background:rgba(255,229,18,0.06);}
-.nav-icon{font-size:18px;line-height:1;}
-.nav-divider{width:40px;height:1px;background:rgba(255,255,255,0.1);margin:8px 0;}
-.page-tag{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:6px;}
-.page-title{font-family:"Playfair Display",serif;font-size:36px;font-weight:900;color:var(--black);line-height:1.1;}
-.main{flex:1;overflow-y:auto;padding:32px 36px;}
-.page-header{margin-bottom:28px;border-bottom:2px solid var(--mid);padding-bottom:20px;display:flex;align-items:flex-end;justify-content:space-between;}
-.header-badges{display:flex;gap:12px;align-items:center;}
-.badge{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;}
-.badge-green{background:var(--green);color:#fff;}
-.badge-outline{border:1.5px solid var(--mid);color:var(--grey);}
-.hero-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:28px;border:1.5px solid var(--black);}
-.hero-cell{padding:22px 24px;background:var(--black);color:#fff;border-right:1.5px solid rgba(255,255,255,0.1);}
-.hero-cell:last-child{border-right:none;}
-.hero-cell .label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;}
-.hero-cell .value{font-family:"Playfair Display",serif;font-size:38px;font-weight:900;color:var(--yellow);line-height:1;}
-.hero-cell .sub{font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;}
-.kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px;}
-.kpi-card{padding:22px 24px;border-radius:3px;}
-.kpi-card.dark{background:var(--black);color:#fff;}
-.kpi-card.green{background:var(--green);color:#fff;}
-.kpi-card.blue{background:var(--blue);color:var(--black);}
-.kpi-card .k-label{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;opacity:0.7;margin-bottom:10px;}
-.kpi-card .k-value{font-family:"Playfair Display",serif;font-size:52px;font-weight:900;line-height:1;}
-.kpi-card .k-sub{font-size:12px;opacity:0.75;margin-top:6px;}
-.section-title{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:16px;}
-.nacr-kpi-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px;margin-bottom:28px;}
-.nacr-card{background:#fff;border:1.5px solid var(--mid);border-top:3px solid var(--green);border-radius:3px;padding:14px 12px;}
-.nacr-card .n-std{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:6px;}
-.nacr-card .n-name{font-size:11px;font-weight:600;color:var(--black);margin-bottom:10px;line-height:1.3;}
-.nacr-card .n-value{font-family:"Playfair Display",serif;font-size:22px;font-weight:900;color:var(--green);line-height:1;margin-bottom:6px;}
-.nacr-card .n-sub{font-size:10px;color:var(--grey);line-height:1.4;}
-.nacr-card .n-target{font-size:9px;color:var(--green);font-weight:600;margin-top:4px;}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px;}
-.panel{background:#fff;border:1.5px solid var(--mid);border-radius:3px;padding:24px;}
-.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-.bar-label{font-size:12px;color:var(--black);width:160px;flex-shrink:0;}
-.bar-track{flex:1;background:var(--mid);height:6px;border-radius:3px;overflow:hidden;}
-.bar-fill{height:100%;border-radius:3px;}
-.bar-val{font-size:12px;font-weight:600;color:var(--black);width:110px;text-align:right;flex-shrink:0;}
-.edu-stats{display:flex;gap:0;margin-bottom:20px;border:1.5px solid var(--mid);border-radius:3px;overflow:hidden;}
-.edu-stat{flex:1;padding:16px;border-right:1.5px solid var(--mid);}
-.edu-stat:last-child{border-right:none;}
-.edu-stat .es-val{font-family:"Playfair Display",serif;font-size:28px;font-weight:900;line-height:1;}
-.edu-stat .es-label{font-size:11px;color:var(--grey);margin-top:4px;}
-.edu-stat .es-sub{font-size:10px;color:var(--grey);margin-top:2px;}
-.edu-stat .es-note{font-size:10px;font-weight:600;margin-top:4px;}
-.teal-val{color:var(--teal);}
-.green-val{color:var(--green);}
-.black-val{color:var(--black);}
-.edu-narrative{background:var(--light);border-left:3px solid var(--mid);padding:12px 14px;font-size:12px;color:var(--grey);line-height:1.6;border-radius:0 3px 3px 0;}
-.framework-row{display:flex;align-items:baseline;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--mid);}
-.framework-row:last-of-type{border-bottom:none;}
-.fw-label{font-size:13px;font-weight:600;color:var(--black);}
-.fw-sub{font-size:11px;color:var(--grey);margin-top:2px;}
-.fw-value{font-family:"Playfair Display",serif;font-size:22px;font-weight:900;color:var(--green);text-align:right;}
-.fw-value.small{font-size:16px;}
-.fw-note{font-size:10px;color:var(--grey);text-align:right;margin-top:2px;}
-.narrative-block{background:var(--light);border-left:3px solid var(--green);padding:14px 16px;font-size:13px;color:var(--grey);line-height:1.6;margin-top:16px;border-radius:0 3px 3px 0;}
-.outcome-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:0;}
-.outcome-card{background:#fff;border:1.5px solid var(--mid);border-radius:3px;padding:16px 18px;}
-.outcome-card .oc-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
-.outcome-card .oc-value{font-family:"Playfair Display",serif;font-size:30px;font-weight:900;color:var(--black);line-height:1;}
-.outcome-card .oc-sub{font-size:11px;color:var(--grey);margin-top:6px;}
-.outcome-card .oc-note{font-size:10px;color:var(--teal);font-weight:600;margin-top:4px;}
-.page-footer{border-top:2px solid var(--mid);padding-top:20px;margin-top:8px;}
-.footer-text{font-size:12px;color:var(--grey);line-height:1.6;}
-
-  .tab-nav{display:flex;gap:0;padding:0 48px;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
-  .tab-btn{position:relative;padding:18px 28px 15px;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;border:none;background:none;transition:all .2s;border-bottom:3px solid transparent;margin-bottom:-1px;}
-  .tab-btn:hover{color:rgba(255,255,255,0.7);}
-  .tab-btn.active{color:var(--pink);border-bottom-color:var(--pink);}
-  .tab-desc{display:block;font-size:9px;letter-spacing:.05em;text-transform:none;opacity:0.5;font-weight:400;margin-top:2px;}
-  .tab-content{display:none;}
-  .tab-content.active{display:block;}
-</style>
-</head>
-<body>
-<nav class="sidebar">
-  <div class="sidebar-logo">CP+R<span>FY 25/26</span></div>
-  <div class="nav-items">
-    <a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>OVERVIEW</a>
-    <a href="partnerships-dashboard.html" class="nav-item"><span class="nav-icon">🤝</span>PARTNERS</a>
-    <div class="nav-item active"><span class="nav-icon">🏥</span>CLINICAL</div>
-    <a href="onboarding-dashboard.html" class="nav-item"><span class="nav-icon">\u1f4cb</span>ONBOARD</a>
-    <div class="nav-item"><span class="nav-icon">⚡</span>EM PERF</div>
-    <div class="nav-item"><span class="nav-icon">👥</span>PEOPLE</div>
-    <div class="nav-item"><span class="nav-icon">💻</span>TECH</div>
-    <div class="nav-item"><span class="nav-icon">🔭</span>FY26/27</div>
-  </div>
-</nav>
-
-<main class="main">
-  <div class="page-header">
+<div data-route-id="clinical" data-accent="pink" data-page-title="CP+R · Clinical">
+<div class="page-content">
+<div class="page-header">
     <div>
       <div class="page-tag">CLINICAL · 04</div>
       <h1 class="page-title">Clinical &amp; NACR</h1>
@@ -132,18 +13,18 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     </div>
   
 </div>
-  <div class="tab-nav">
-    <button class="tab-btn active" onclick="showTab('signoff')" id="tab-signoff">
+  <nav class="tab-nav" data-tabs="clinical" aria-label="Section tabs">
+    <button type="button" class="tab-btn is-active" data-tab="signoff">
       Sign-off<span class="tab-desc">Clinical sign-off quality</span>
     </button>
-    <button class="tab-btn" onclick="showTab('engagement')" id="tab-engagement">
+    <button type="button" class="tab-btn" data-tab="engagement">
       Athlete Engagement<span class="tab-desc">Consultations &amp; education</span>
     </button>
-    <button class="tab-btn" onclick="showTab('nacr')" id="tab-nacr">
+    <button type="button" class="tab-btn" data-tab="nacr">
       NACR Accreditation<span class="tab-desc">All 7 standards met</span>
     </button>
-  </div>
-  <div class="tab-content active" id="content-signoff">
+</nav>
+  <section data-panel="signoff" data-tab-group="clinical" class="tab-panel is-active">
   <div class="hero-strip">
     <div class="hero-cell" style="grid-column:span 4;display:flex;gap:0;">
       <div style="flex:1;border-right:1.5px solid rgba(255,255,255,0.1);padding:22px 24px;">
@@ -172,9 +53,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     </div>
   </div>
 
-  </div>
+  </section>
 
-  <div class="tab-content" id="content-nacr">
+  <section data-panel="nacr" data-tab-group="clinical" class="tab-panel">
   <div class="section-title">NACR STANDARDS · ALL 7 MET</div>
   <div class="nacr-kpi-grid">
     <div class="nacr-card">
@@ -228,9 +109,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
     </div>
   </div>
 
-  </div>
+  </section>
 
-  <div class="tab-content" id="content-engagement">
+  <section data-panel="engagement" data-tab-group="clinical" class="tab-panel">
   <div class="two-col">
     <div class="panel">
       <div class="section-title">ATHLETE ENGAGEMENT · FY TOTALS W1–50</div>
@@ -354,19 +235,6 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
   <div class="page-footer">
     <p class="footer-text">Achieving Green Status across all 7 NACR KPIs is the clinical benchmark that matters most. It confirms CP+R is delivering cardiac rehabilitation to the standard set by the national accreditation body. Programme outcome metrics (completion rate 57.1%, reassessment rate 71.7%) are tracked proactively but not yet scored by NACR — both are ahead of, or at, aspirational targets.</p>
   </div>
-  </div>
-
-  <script>
-  function showTab(name) {
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    const content = document.getElementById('content-' + name);
-    const btn = document.getElementById('tab-' + name);
-    if (content) content.classList.add('active');
-    if (btn) btn.classList.add('active');
-  }
-  </script>
-
-</main>
-</body>
-</html>
+  </section>
+</div>
+</div>
