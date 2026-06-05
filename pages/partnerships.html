@@ -3,12 +3,117 @@
 
 <nav class="tab-nav" data-tabs="partnerships-main" aria-label="Section tabs">
   <button type="button" class="tab-btn is-active" data-tab="referrals">
-    Referrals<span class="tab-desc">Historical referral volume</span>
+    <span class="tab-btn-inner">
+      <span class="tab-btn-label">Referrals</span>
+      <span class="tab-desc">Historical referral volume</span>
+    </span>
+    <span class="tab-btn-arrow" aria-hidden="true">›</span>
   </button>
   <button type="button" class="tab-btn" data-tab="income-pillars">
-    Income Pillars<span class="tab-desc">Income &amp; pillar performance</span>
+    <span class="tab-btn-inner">
+      <span class="tab-btn-label">Income Pillars</span>
+      <span class="tab-desc">Income &amp; pillar performance</span>
+    </span>
+    <span class="tab-btn-arrow" aria-hidden="true">›</span>
   </button>
 </nav>
+
+<style>
+.tab-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 0;
+}
+
+.tab-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 20px 12px 20px;
+  min-width: 180px;
+  background: rgba(255,255,255,0.03);
+  border: none;
+  border-right: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease, border-bottom-color 0.15s ease;
+}
+
+.tab-btn:last-child {
+  border-right: none;
+}
+
+.tab-btn:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+.tab-btn.is-active {
+  background: rgba(255,229,18,0.06);
+  border-bottom-color: #ffe512;
+}
+
+.tab-btn-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tab-btn-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  transition: color 0.15s ease;
+}
+
+.tab-btn.is-active .tab-btn-label {
+  color: #ffe512;
+}
+
+.tab-btn:hover:not(.is-active) .tab-btn-label {
+  color: rgba(255,255,255,0.75);
+}
+
+.tab-btn .tab-desc {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.25);
+  transition: color 0.15s ease;
+}
+
+.tab-btn.is-active .tab-desc {
+  color: rgba(255,229,18,0.5);
+}
+
+.tab-btn:hover:not(.is-active) .tab-desc {
+  color: rgba(255,255,255,0.45);
+}
+
+.tab-btn-arrow {
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(255,255,255,0.15);
+  transition: color 0.15s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.tab-btn.is-active .tab-btn-arrow {
+  color: rgba(255,229,18,0.5);
+  transform: rotate(90deg);
+}
+
+.tab-btn:hover:not(.is-active) .tab-btn-arrow {
+  color: rgba(255,255,255,0.4);
+  transform: translateX(2px);
+}
+</style>
 
 <!-- ═══════════════════════════════════════════════════════════
      TAB 1 · REFERRALS
@@ -96,16 +201,32 @@
 
   <nav class="tab-nav" data-tabs="partnerships-pillars" aria-label="Pillar tabs">
     <button type="button" class="tab-btn" data-tab="overview">
-      Overview<span class="tab-desc">Full year summary</span>
+      <span class="tab-btn-inner">
+        <span class="tab-btn-label">Overview</span>
+        <span class="tab-desc">Full year summary</span>
+      </span>
+      <span class="tab-btn-arrow" aria-hidden="true">›</span>
     </button>
     <button type="button" class="tab-btn" data-tab="hospital">
-      A · Hospital<span class="tab-desc">Explore A Pillar</span>
+      <span class="tab-btn-inner">
+        <span class="tab-btn-label">A · Hospital</span>
+        <span class="tab-desc">Explore A Pillar</span>
+      </span>
+      <span class="tab-btn-arrow" aria-hidden="true">›</span>
     </button>
     <button type="button" class="tab-btn" data-tab="consultant">
-      B · Consultant<span class="tab-desc">Explore B Pillar</span>
+      <span class="tab-btn-inner">
+        <span class="tab-btn-label">B · Consultant</span>
+        <span class="tab-desc">Explore B Pillar</span>
+      </span>
+      <span class="tab-btn-arrow" aria-hidden="true">›</span>
     </button>
     <button type="button" class="tab-btn" data-tab="opportunity">
-      C · Opportunity<span class="tab-desc">Explore C Pillar</span>
+      <span class="tab-btn-inner">
+        <span class="tab-btn-label">C · Opportunity</span>
+        <span class="tab-desc">Explore C Pillar</span>
+      </span>
+      <span class="tab-btn-arrow" aria-hidden="true">›</span>
     </button>
   </nav>
 
