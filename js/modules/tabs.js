@@ -30,11 +30,30 @@ function activateChartView(root, viewId) {
   document.dispatchEvent(new CustomEvent("chartview:change", { detail: { viewId, root } }));
 }
 
+function initTabGroup(tabsEl) {
+  const group = tabsEl.dataset.tabs;
+  const activeBtn = tabsEl.querySelector(".tab-btn.is-active") ?? tabsEl.querySelector(".tab-btn");
+  if (activeBtn) activateTab(group, activeBtn.dataset.tab);
+}
+
 function handleClick(event) {
   const tabBtn = event.target.closest(".tab-btn[data-tab]");
   if (tabBtn) {
     const group = tabBtn.closest("[data-tabs]")?.dataset.tabs;
-    if (group) activateTab(group, tabBtn.dataset.tab);
+    if (group) {
+      activateTab(group, tabBtn.dataset.tab);
+      // initialise any nested tab groups that just became visible
+      const root = document.getElementById("page-root");
+      if (root) {
+        root.querySelectorAll("[data-tabs]").forEach((el) => {
+          // only init groups inside newly-active panels
+          const panel = el.closest("[data-tab-group]");
+          if (panel && panel.classList.contains("is-active")) {
+            initTabGroup(el);
+          }
+        });
+      }
+    }
     return;
   }
 
@@ -69,9 +88,7 @@ export function initTabs(root = document.getElementById("page-root")) {
   instances.set(root, handleClick);
 
   root.querySelectorAll("[data-tabs]").forEach((tabsEl) => {
-    const group = tabsEl.dataset.tabs;
-    const activeBtn = tabsEl.querySelector(".tab-btn.is-active") ?? tabsEl.querySelector(".tab-btn");
-    if (activeBtn) activateTab(group, activeBtn.dataset.tab);
+    initTabGroup(tabsEl);
   });
 }
 
