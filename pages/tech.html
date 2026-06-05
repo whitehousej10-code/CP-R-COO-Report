@@ -1,224 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CP+R · Technology Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box;}
-    :root{
-      --black:#231f20;
-      --yellow:#ffe512;
-      --blue:#44c8f5;
-      --green:#4db848;
-      --pink:#e3407f;
-      --teal:#009db4;
-      --light:#f7f7f5;
-      --mid:#ebebeb;
-      --grey:#58595b;
-      --sidebar:72px;
-    }
-    body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black);display:flex;height:100vh;overflow:hidden;}
-
-    /* SIDEBAR */
-    .sidebar{
-      width:var(--sidebar);
-      background:var(--black);
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding:20px 0;
-      gap:0;
-      flex-shrink:0;
-      overflow-y:auto;
-    }
-    .sidebar-logo{
-      font-family:"Playfair Display",serif;
-      font-size:14px;
-      color:#fff;
-      text-align:center;
-      line-height:1.2;
-      margin-bottom:24px;
-      padding:0 8px;
-    }
-    .sidebar-logo span{color:var(--yellow);}
-    .nav-items{display:flex;flex-direction:column;gap:4px;width:100%;}
-    .nav-item{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      padding:10px 4px;
-      cursor:pointer;
-      border-left:3px solid transparent;
-      text-decoration:none;
-      color:#999;
-      font-size:9px;
-      font-weight:600;
-      letter-spacing:0.5px;
-      text-transform:uppercase;
-      gap:4px;
-      transition:all 0.2s;
-    }
-    .nav-item:hover{color:#fff;background:rgba(255,255,255,0.05);}
-    .nav-item.active{color:#fff;border-left-color:var(--yellow);}
-    .nav-icon{font-size:16px;}
-    .nav-divider{width:40px;height:1px;background:rgba(255,255,255,0.1);margin:8px auto;}
-
-    /* MAIN */
-    .main{flex:1;overflow-y:auto;display:flex;flex-direction:column;}
-
-    /* PAGE HEADER */
-    .page-header{padding:28px 32px 0;display:flex;align-items:flex-start;justify-content:space-between;}
-    .page-tag{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:6px;}
-    .page-title{font-family:"Playfair Display",serif;font-size:36px;line-height:1.1;}
-    .page-title span{color:var(--blue);}
-    .header-badges{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-    .badge{padding:6px 14px;border-radius:4px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
-    .badge-green{background:var(--green);color:#fff;}
-    .badge-blue{background:var(--blue);color:var(--black);}
-    .badge-yellow{background:var(--yellow);color:var(--black);}
-    .badge-pink{background:var(--pink);color:#fff;}
-    .fy-label{font-size:12px;font-weight:600;color:var(--grey);}
-
-    /* HERO STRIP */
-    .hero-strip{
-      display:grid;
-      grid-template-columns:1fr 1fr 1fr;
-      background:var(--black);
-      margin:20px 32px;
-      border-radius:8px;
-      overflow:hidden;
-    }
-    .hero-cell{padding:24px 28px;border-right:1px solid rgba(255,255,255,0.1);}
-    .hero-cell:last-child{border-right:none;}
-    .hero-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:8px;}
-    .hero-value{font-size:42px;font-weight:700;line-height:1;margin-bottom:6px;}
-    .hero-value.yellow{color:var(--yellow);}
-    .hero-value.blue{color:var(--blue);}
-    .hero-value.green{color:var(--green);}
-    .hero-sub{font-size:12px;color:#999;}
-    .hero-trend{font-size:11px;font-weight:600;margin-top:6px;}
-    .hero-trend.up{color:var(--green);}
-    .hero-trend.note{color:var(--yellow);}
-
-    /* CONTENT AREA */
-    .content{padding:0 32px 32px;display:flex;flex-direction:column;gap:20px;}
-
-    /* PANELS */
-    .panel{background:#fff;border-radius:8px;padding:24px;border:1px solid var(--mid);}
-    .panel-title{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--grey);margin-bottom:20px;}
-
-    /* KPI CARDS */
-    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
-    .kpi-card{background:#fff;border-radius:8px;padding:20px;border:1px solid var(--mid);border-top:3px solid var(--mid);}
-    .kpi-card.green{border-top-color:var(--green);}
-    .kpi-card.blue{border-top-color:var(--blue);}
-    .kpi-card.yellow{border-top-color:var(--yellow);}
-    .kpi-card.pink{border-top-color:var(--pink);}
-    .kpi-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--grey);margin-bottom:10px;}
-    .kpi-value{font-size:32px;font-weight:700;line-height:1;margin-bottom:6px;}
-    .kpi-sub{font-size:12px;color:var(--grey);}
-    .kpi-status{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-top:8px;}
-    .kpi-status.green{color:var(--green);}
-    .kpi-status.yellow{color:#b8860b;}
-    .kpi-status.blue{color:var(--blue);}
-
-    /* SYSTEM ROWS */
-    .system-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-    .system-card{background:#fff;border-radius:8px;padding:20px;border:1px solid var(--mid);display:flex;flex-direction:column;gap:10px;}
-    .system-header{display:flex;align-items:center;gap:12px;}
-    .system-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
-    .system-icon.black{background:var(--black);}
-    .system-icon.blue{background:var(--blue);}
-    .system-icon.green{background:var(--green);}
-    .system-icon.yellow{background:var(--yellow);}
-    .system-icon.pink{background:var(--pink);}
-    .system-name{font-weight:700;font-size:14px;}
-    .system-role{font-size:11px;color:var(--grey);letter-spacing:0.5px;}
-    .system-desc{font-size:12px;color:var(--grey);line-height:1.6;}
-    .system-tags{display:flex;gap:6px;flex-wrap:wrap;}
-    .system-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:3px;background:var(--mid);color:var(--grey);}
-    .system-tag.live{background:#e8f7e8;color:#2d7a2d;}
-    .system-tag.dev{background:#fff3cd;color:#856404;}
-
-    /* NARRATIVE */
-    .narrative{background:var(--light);border-radius:8px;padding:20px 24px;border-left:4px solid var(--yellow);font-size:13px;line-height:1.7;color:var(--grey);}
-    .narrative.blue{border-left-color:var(--blue);}
-
-    /* TWO COL */
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
-
-    /* STATUS ROW */
-    .status-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--mid);}
-    .status-row:last-child{border-bottom:none;}
-    .status-name{font-weight:600;font-size:13px;}
-    .status-detail{font-size:11px;color:var(--grey);}
-    .status-badge{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:3px;}
-    .status-badge.live{background:#e8f7e8;color:#2d7a2d;}
-    .status-badge.dev{background:#fff3cd;color:#856404;}
-    .status-badge.planned{background:#e8eaf6;color:#3949ab;}
-
-    /* ARC BAR */
-    .arc-row{margin-bottom:14px;}
-    .arc-row:last-child{margin-bottom:0;}
-    .arc-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px;}
-    .arc-label{font-size:12px;font-weight:600;}
-    .arc-val{font-size:13px;font-weight:700;}
-    .arc-track{height:8px;background:var(--mid);border-radius:4px;overflow:hidden;}
-    .arc-fill{height:100%;border-radius:4px;}
-
-    .tab-nav{display:flex;gap:0;padding:0 48px;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
-    .tab-btn{position:relative;padding:18px 28px 15px;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;border:none;background:none;transition:all .2s;border-bottom:3px solid transparent;margin-bottom:-1px;}
-    .tab-btn:hover{color:rgba(255,255,255,0.7);}
-    .tab-btn.active{color:var(--blue);border-bottom-color:var(--blue);}
-    .tab-desc{display:block;font-size:9px;letter-spacing:.05em;text-transform:none;opacity:0.5;font-weight:400;margin-top:2px;}
-    .tab-content{display:none;}
-    .tab-content.active{display:block;}
-  </style>
-</head>
-<body>
-  <div class="sidebar">
-    <div class="sidebar-logo">CP+R<span>FY 25/26</span></div>
-    <div class="nav-items">
-      <a href="index.html" class="nav-item" style="text-decoration:none;">
-        <div class="nav-icon">&#127968;</div>
-        <div>Overview</div>
-      </a>
-      <a href="partnerships-dashboard.html" class="nav-item" style="text-decoration:none;">
-        <div class="nav-icon">&#129309;</div>
-        <div>Partners</div>
-      </a>
-      <a href="clinical-dashboard.html" class="nav-item" style="text-decoration:none;">
-        <div class="nav-icon">&#129657;</div>
-        <div>Clinical</div>
-      </a>
-      <a href="onboarding-dashboard.html" class="nav-item" style="text-decoration:none;">
-        <div class="nav-icon">&#128203;</div>
-        <div>Onboard</div>
-      </a>
-      <a href="em-performance-dashboard.html" class="nav-item" style="text-decoration:none;">
-        <div class="nav-icon">&#9889;</div>
-        <div>EM Perf</div>
-      </a>
-      <a href="people-dashboard.html" class="nav-item" style="text-decoration:none;">
-        <div class="nav-icon">&#128101;</div>
-        <div>People</div>
-      </a>
-      <div class="nav-item active">
-        <div class="nav-icon">&#128187;</div>
-        <div>Tech</div>
-      </div>
-      <div class="nav-divider"></div>
-      <a href="fy2627-dashboard.html" class="nav-item" style="text-decoration:none;">
-        <div class="nav-icon">&#128640;</div>
-        <div>FY26/27</div>
-      </a>
-    </div>
-  </div>
-
-  <div class="main">
-    <div class="page-header">
+<div data-route-id="tech" data-accent="blue" data-page-title="CP+R · Technology">
+<div class="page-content">
+<div class="page-header">
       <div>
         <div class="page-tag">Operations &middot; 07</div>
         <div class="page-title">Technology <span>&amp;</span> Systems</div>
@@ -233,15 +15,15 @@
       </div>
     </div>
 
-<div class="tab-nav">
-    <button class="tab-btn active" onclick="showTab('delivery')" id="tab-delivery">
+<nav class="tab-nav" data-tabs="tech" aria-label="Section tabs">
+    <button type="button" class="tab-btn is-active" data-tab="delivery">
       FY25/26 Delivery<span class="tab-desc">What was built this year</span>
     </button>
-    <button class="tab-btn" onclick="showTab('roadmap')" id="tab-roadmap">
+    <button type="button" class="tab-btn" data-tab="roadmap">
       FY26/27 Roadmap<span class="tab-desc">What comes next</span>
     </button>
-  </div>
-  <div class="tab-content active" id="content-delivery">
+</nav>
+  <section data-panel="delivery" data-tab-group="tech" class="tab-panel is-active">
   <div class="hero-strip">
       <div class="hero-cell">
         <div class="hero-label">Systems Live</div>
@@ -480,9 +262,9 @@
       </div>
 
     </div>
-  </div>
+  </section>
 
-  <div class="tab-content" id="content-roadmap">
+  <section data-panel="roadmap" data-tab-group="tech" class="tab-panel">
     <div style="padding:32px 48px;">
       <div class="section-label">FY26/27 Technology Roadmap</div>
       <div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:24px;">
@@ -531,19 +313,6 @@
       </div>
       <div class="narrative">FY25/26 was the year CP+R&rsquo;s technology stack came of age. David, operating as a one-person engineering team, delivered the payment portal, Hub CRM, and the full COO dashboard suite &mdash; three projects that would typically require a team. The roadmap for FY26/27 is ambitious but clear: Hub 2.0 takes the athlete experience digital, the food diary app adds a high-demand wellness feature, and security and compliance work ensures the infrastructure is enterprise-ready. The most operationally critical priority is RA compliance automation &mdash; the gap between 67.2% and the 90% target can only be closed with system-level prompts and enforcement, not manual process.</div>
     </div>
-  </div>
-  </div>
-
-  <script>
-  function showTab(name) {
-    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    const content = document.getElementById('content-' + name);
-    const btn = document.getElementById('tab-' + name);
-    if (content) content.classList.add('active');
-    if (btn) btn.classList.add('active');
-  }
-  </script>
-
-</body>
-</html>
+  </section>
+</div>
+</div>

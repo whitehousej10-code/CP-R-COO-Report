@@ -1,117 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CP+R · Onboarding Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-:root{--black:#231f20;--yellow:#ffe512;--blue:#44c8f5;--green:#4db848;--pink:#e3407f;--light:#f7f7f5;--mid:#ebebeb;--grey:#58595b;--sidebar:72px;}
-body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black);display:flex;height:100vh;overflow:hidden;}
-.sidebar{width:var(--sidebar);background:var(--black);display:flex;flex-direction:column;align-items:center;padding:20px 0;flex-shrink:0;z-index:10;}
-.sidebar-logo{font-family:"Playfair Display",serif;font-size:13px;font-weight:900;color:var(--yellow);letter-spacing:-1px;margin-bottom:28px;text-align:center;line-height:1;}
-.sidebar-logo span{color:#fff;font-weight:400;letter-spacing:.15em;text-transform:uppercase;display:block;font-size:9px;margin-top:3px;font-family:"DM Sans",sans-serif;}
-.nav-items{display:flex;flex-direction:column;align-items:center;gap:4px;width:100%;flex:1;}
-.nav-item{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:12px 0 8px;cursor:pointer;color:rgba(255,255,255,0.4);font-size:9px;font-weight:500;letter-spacing:.3px;text-transform:uppercase;text-decoration:none;border-left:3px solid transparent;}
-.nav-item:hover{color:rgba(255,255,255,0.8);}
-.nav-item.active{color:var(--yellow);border-left-color:var(--yellow);background:rgba(255,229,18,0.06);}
-.nav-icon{font-size:18px;line-height:1;}
-.main{flex:1;overflow-y:auto;padding:32px 36px;}
-.page-header{margin-bottom:28px;border-bottom:2px solid var(--mid);padding-bottom:20px;display:flex;align-items:flex-end;justify-content:space-between;}
-.header-badges{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
-.badge{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:2px;}
-.badge-blue{background:var(--blue);color:var(--black);}
-.badge-outline{border:1.5px solid var(--mid);color:var(--grey);}
-.badge-green{background:var(--green);color:#fff;}
-.badge-yellow{background:var(--yellow);color:var(--black);}
-.page-tag{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:6px;}
-.page-title{font-family:"Playfair Display",serif;font-size:36px;font-weight:900;color:var(--black);line-height:1.1;}
-.hero-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-bottom:28px;border:1.5px solid var(--black);border-radius:3px;overflow:hidden;}
-.hero-cell{padding:22px 24px;background:var(--black);color:#fff;border-right:1.5px solid rgba(255,255,255,0.1);}
-.hero-cell:last-child{border-right:none;}
-.hero-cell .h-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:8px;}
-.hero-cell .h-value{font-family:"Playfair Display",serif;font-size:42px;font-weight:900;color:var(--yellow);line-height:1;}
-.hero-cell .h-value.blue{color:var(--blue);}
-.hero-cell .h-value.green{color:var(--green);}
-.hero-cell .h-sub{font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px;line-height:1.5;}
-.hero-cell .h-delta{font-size:11px;font-weight:600;margin-top:4px;color:var(--green);}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:28px;}
-.four-col{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;margin-bottom:28px;}
-.panel{background:#fff;border:1.5px solid var(--mid);border-radius:3px;padding:24px;}
-.panel-title{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--grey);margin-bottom:16px;}
-.kpi-card{background:#fff;border:1.5px solid var(--mid);border-top:3px solid var(--blue);border-radius:3px;padding:18px 20px;}
-.kpi-card.green{border-top-color:var(--green);}
-.kpi-card.yellow{border-top-color:var(--yellow);}
-.kpi-card.pink{border-top-color:var(--pink);}
-.kpi-card .k-label{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);margin-bottom:8px;}
-.kpi-card .k-value{font-family:"Playfair Display",serif;font-size:32px;font-weight:900;color:var(--black);line-height:1;}
-.kpi-card .k-sub{font-size:11px;color:var(--grey);margin-top:6px;}
-.kpi-card .k-status{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-top:6px;}
-.kpi-card .k-status.good{color:var(--green);}
-.kpi-card .k-status.warn{color:var(--yellow);}
-.kpi-card .k-status.bad{color:var(--pink);}
-.funnel-wrap{background:#fff;border:1.5px solid var(--mid);border-radius:3px;padding:24px;margin-bottom:28px;}
-.funnel-steps{display:flex;align-items:stretch;gap:8px;margin-top:4px;}
-.funnel-step{flex:1;}
-.funnel-box{background:var(--light);border:1.5px solid var(--mid);border-radius:3px;padding:16px 14px;text-align:center;}
-.funnel-box .f-arrow{font-size:20px;color:var(--mid);text-align:center;margin:8px 0 0;}
-.funnel-box .f-num{font-family:"Playfair Display",serif;font-size:30px;font-weight:900;color:var(--black);line-height:1;margin-bottom:6px;}
-.funnel-box .f-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);line-height:1.3;}
-.funnel-box .f-rate{font-size:11px;font-weight:700;color:var(--blue);margin-top:6px;}
-.funnel-box.highlight{background:var(--black);border-color:var(--black);}
-.funnel-box.highlight .f-num{color:var(--yellow);}
-.funnel-box.highlight .f-label{color:rgba(255,255,255,0.6);}
-.funnel-box.highlight .f-rate{color:var(--green);}
-.arc-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
-.arc-label{font-size:11px;color:var(--grey);width:150px;flex-shrink:0;}
-.arc-track{flex:1;background:var(--mid);height:8px;border-radius:4px;overflow:hidden;}
-.arc-fill{height:100%;border-radius:4px;background:var(--blue);}
-.arc-fill.green{background:var(--green);}
-.arc-fill.yellow{background:var(--yellow);}
-.arc-fill.pink{background:var(--pink);}
-.arc-val{font-size:12px;font-weight:700;width:44px;text-align:right;}
-.stat-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--mid);}
-.stat-row:last-child{border-bottom:none;}
-.stat-label{font-size:12px;color:var(--grey);}
-.stat-value{font-family:"Playfair Display",serif;font-size:18px;font-weight:900;color:var(--black);}
-.stat-value.blue{color:var(--blue);}
-.stat-value.green{color:var(--green);}
-.timeline-strip{background:var(--black);color:#fff;border-radius:3px;padding:20px 24px;margin-bottom:28px;display:flex;gap:0;align-items:stretch;}
-.tl-step{flex:1;padding:0 20px;border-right:1px solid rgba(255,255,255,0.1);}
-.tl-step:first-child{padding-left:0;}
-.tl-step:last-child{border-right:none;}
-.tl-num{font-family:"Playfair Display",serif;font-size:22px;font-weight:900;color:var(--yellow);line-height:1;margin-bottom:6px;}
-.tl-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:4px;}
-.tl-note{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.4;}
-.narrative{background:var(--light);border-left:3px solid var(--blue);padding:14px 16px;font-size:13px;color:var(--grey);line-height:1.6;border-radius:0 3px 3px 0;margin-top:16px;}
-.page-footer{border-top:2px solid var(--mid);padding-top:20px;margin-top:8px;}
-.footer-text{font-size:12px;color:var(--grey);line-height:1.6;}
-
-.tab-nav{display:flex;gap:0;padding:0 48px;background:var(--black);border-bottom:1px solid rgba(255,255,255,0.08);flex-shrink:0;}
-.tab-btn{position:relative;padding:18px 28px 15px;font-family:"DM Sans",sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.4);cursor:pointer;border:none;background:none;transition:all .2s;border-bottom:3px solid transparent;margin-bottom:-1px;}
-.tab-btn:hover{color:rgba(255,255,255,0.7);}
-.tab-btn.active{color:var(--green);border-bottom-color:var(--green);}
-.tab-desc{display:block;font-size:9px;letter-spacing:.05em;text-transform:none;opacity:0.5;font-weight:400;margin-top:2px;}
-.tab-content{display:none;}
-.tab-content.active{display:block;}
-</style>
-</head>
-<body>
-<nav class="sidebar">
-<div class="sidebar-logo">CP+R<span>FY 25/26</span></div>
-<div class="nav-items">
-<a href="index.html" class="nav-item"><span class="nav-icon">🏠</span>OVERVIEW</a>
-<a href="partnerships-dashboard.html" class="nav-item"><span class="nav-icon">🤝</span>PARTNERS</a>
-<a href="clinical-dashboard.html" class="nav-item"><span class="nav-icon">🏥</span>CLINICAL</a>
-<div class="nav-item active"><span class="nav-icon">📋</span>ONBOARD</div>
-<a href="em-performance-dashboard.html" class="nav-item"><span class="nav-icon">⚡</span>EM PERF</a>
-<a href="people-dashboard.html" class="nav-item"><span class="nav-icon">👥</span>PEOPLE</a>
-<div class="nav-item"><span class="nav-icon">💻</span>TECH</div>
-<div class="nav-item"><span class="nav-icon">🔭</span>FY26/27</div>
-</div>
-</nav>
-<main class="main">
+<div data-route-id="onboarding" data-accent="green" data-page-title="CP+R · Onboarding">
+<div class="page-content">
 <div class="page-header">
 <div>
 <div class="page-tag">COMMERCIAL · 02</div>
@@ -124,18 +12,18 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <span class="badge badge-outline">FY 25/26</span>
 </div>
 </div>
-<div class="tab-nav">
-  <button class="tab-btn active" onclick="showTab('overview')" id="tab-overview">
+<nav class="tab-nav" data-tabs="onboarding" aria-label="Section tabs">
+  <button type="button" class="tab-btn is-active" data-tab="overview">
     Overview<span class="tab-desc">Full year summary</span>
   </button>
-  <button class="tab-btn" onclick="showTab('funnel')" id="tab-funnel">
+  <button type="button" class="tab-btn" data-tab="funnel">
     Funnel<span class="tab-desc">Referral to programme start</span>
   </button>
-  <button class="tab-btn" onclick="showTab('speed')" id="tab-speed">
+  <button type="button" class="tab-btn" data-tab="speed">
     Speed of Onboarding<span class="tab-desc">Time from referral to payment</span>
   </button>
-</div>
-<div class="tab-content active" id="content-overview">
+</nav>
+<section data-panel="overview" data-tab-group="onboarding" class="tab-panel is-active">
 <div class="hero-strip">
 <div class="hero-cell">
 <div class="h-label">Referrals Received</div>
@@ -229,9 +117,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 </div>
 <div class="two-col">
 </div>
-</div>
+</section>
 
-<div class="tab-content" id="content-funnel">
+<section data-panel="funnel" data-tab-group="onboarding" class="tab-panel">
 <div class="two-col">
 <div class="panel">
 <div class="panel-title">Referral Volume by Pillar</div>
@@ -325,9 +213,9 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <div class="narrative">RA compliance measures whether athletes are onboarded with a Recommended Activity plan in place. At 67.3% vs 90%, this was the most significant operational gap of FY25/26. High coach transition volume was a structural contributor. James Porter has named RA compliance as a stated priority for FY26/27.</div>
 </div>
 </div>
-</div>
+</section>
 
-<div class="tab-content" id="content-speed">
+<section data-panel="speed" data-tab-group="onboarding" class="tab-panel">
 <div style="padding:32px 48px;">
 <div class="panel">
 <div class="panel-title">Speed of Onboarding &middot; FY25/26 Final</div>
@@ -378,18 +266,6 @@ body{font-family:"DM Sans",sans-serif;background:var(--light);color:var(--black)
 <div class="page-footer">
 <div class="footer-text">CP+R · Athlete Onboarding Dashboard · FY 2025/26 · ACR = Athlete Consultation Review · RA = Recommended Activity · Data covers W1–W50</div>
 </div>
+</section>
 </div>
-
-<script>
-function showTab(name) {
-  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  const content = document.getElementById('content-' + name);
-  const btn = document.getElementById('tab-' + name);
-  if (content) content.classList.add('active');
-  if (btn) btn.classList.add('active');
-}
-</script>
-</main>
-</body>
-</html>
+</div>

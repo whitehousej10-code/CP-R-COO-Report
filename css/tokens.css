@@ -1,0 +1,19 @@
+:root {
+  --black: #231f20;
+  --yellow: #ffe512;
+  --blue: #44c8f5;
+  --green: #4db848;
+  --pink: #e3407f;
+  --teal: #009db4;
+  --orange: #f37021;
+  --light: #f7f7f5;
+  --mid: #ebebeb;
+  --grey: #58595b;
+  --sidebar: 72px;
+  --accent: var(--yellow);
+}
+
+[data-accent="yellow"] { --accent: var(--yellow); }
+[data-accent="green"] { --accent: var(--green); }
+[data-accent="pink"] { --accent: var(--pink); }
+[data-accent="blue"] { --accent: var(--blue); }

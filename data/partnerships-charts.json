@@ -1,0 +1,13 @@
+{
+  "fyVolume": {
+    "preset": "fyVolume",
+    "labels": ["FY18/19", "FY19/20", "FY20/21", "FY21/22", "FY22/23", "FY23/24", "FY24/25", "FY25/26"],
+    "data": [125, 89, 291, 461, 653, 894, 951, 967],
+    "yMax": 1100
+  },
+  "seasonality": {
+    "preset": "seasonality",
+    "labels": ["Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May"],
+    "data": [300, 408, 309, 361, 353, 356, 335, 330, 386, 421, 409, 456]
+  }
+}

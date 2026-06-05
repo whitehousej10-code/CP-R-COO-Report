@@ -1,0 +1,227 @@
+.page-banner {
+  background: var(--black);
+  padding: 32px 48px 26px;
+  flex-shrink: 0;
+}
+
+.page-banner .page-tag {
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.page-banner .page-title {
+  color: #fff;
+  font-size: 42px;
+}
+
+.page-banner .page-title span {
+  color: var(--yellow);
+}
+
+.page-banner .page-subtitle {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+}
+
+.pillar-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.pillar-card {
+  background: #fff;
+  border-radius: 3px;
+  padding: 28px;
+  border: 1.5px solid var(--mid);
+  border-top: 5px solid;
+}
+
+.pillar-card.a { border-top-color: var(--yellow); }
+.pillar-card.b { border-top-color: var(--blue); }
+.pillar-card.c { border-top-color: var(--green); }
+
+.pillar-name {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.pillar-card.a .pillar-name { color: var(--black); }
+.pillar-card.b .pillar-name { color: var(--teal); }
+.pillar-card.c .pillar-name { color: var(--green); }
+
+.pillar-income {
+  font-family: "Playfair Display", serif;
+  font-size: 44px;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.pillar-refs {
+  font-size: 12px;
+  color: var(--grey);
+}
+
+.pillar-delta {
+  font-size: 12px;
+  font-weight: 600;
+  margin-top: 12px;
+}
+
+.projection-card {
+  background: var(--black);
+  border-radius: 3px;
+  padding: 32px;
+  color: #fff;
+  margin-bottom: 28px;
+}
+
+.proj-title {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 22px;
+}
+
+.proj-row {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.proj-item { flex: 1; min-width: 120px; }
+
+.proj-scenario {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 6px;
+}
+
+.proj-value {
+  font-family: "Playfair Display", serif;
+  font-size: 40px;
+  font-weight: 900;
+  color: var(--yellow);
+}
+
+.proj-bars {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 200px;
+}
+
+.proj-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.proj-bar-lbl {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.35);
+  width: 64px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.proj-bar-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.proj-bar-fill {
+  height: 100%;
+  background: var(--yellow);
+  border-radius: 4px;
+}
+
+.kpi-card.hero {
+  background: var(--black);
+  color: #fff;
+}
+
+.kpi-card.hero .kpi-label {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.kpi-card.hero .kpi-value {
+  color: var(--yellow);
+}
+
+.kpi-card.hero .kpi-delta {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 12px;
+}
+
+.kpi-card.accent-yellow { background: var(--yellow); }
+.kpi-card.accent-blue { background: var(--blue); }
+.kpi-card.accent-green { background: var(--green); }
+
+.kpi-card.accent-yellow .kpi-value,
+.kpi-card.accent-blue .kpi-value,
+.kpi-card.accent-green .kpi-value {
+  color: var(--black);
+}
+
+.kpi-delta .delta-up { color: var(--green); }
+.kpi-delta .delta-down { color: var(--pink); }
+
+.rv-hero {
+  background: var(--black);
+  padding: 44px 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.rv-kpi-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 10px;
+}
+
+.rv-kpi-value {
+  font-family: "Playfair Display", serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+
+.rv-kpi-sub {
+  font-size: 12px;
+  color: var(--yellow);
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.partnerships-tab-content {
+  padding: 32px 36px 56px;
+}
+
+@media (max-width: 900px) {
+  .pillar-row,
+  .rv-hero {
+    grid-template-columns: 1fr;
+  }
+}
