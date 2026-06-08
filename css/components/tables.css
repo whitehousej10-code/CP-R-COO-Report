@@ -64,11 +64,8 @@
   min-width: 40px;
 }
 
-/* Reset the inherited .data-table last-row background so the heatmap colour
-   scale below applies to the last FY row (e.g. FY25/26) too. */
 .data-table--heatmap tbody tr:last-child td {
   font-weight: 600;
-  background: none;
 }
 
 .data-table--heatmap .fy-label {
@@ -79,20 +76,21 @@
   background: transparent !important;
 }
 
-/* Heatmap colour scale. Selectors are scoped to tbody td[data-level] so they
-   out-rank the generic .data-table last-row rule on every row. */
-.data-table--heatmap tbody td[data-level="0"] {
-  background: rgba(255, 255, 255, 0.04);
+/* Heatmap colour scale. !important guarantees the colour wins over the generic
+   .data-table last-row background, so the final FY row (e.g. FY25/26) is
+   coloured like every other row instead of appearing as a plain cell. */
+.data-table--heatmap [data-level="0"] {
+  background: rgba(255, 255, 255, 0.04) !important;
   color: rgba(255, 255, 255, 0.15);
 }
 
-.data-table--heatmap tbody td[data-level="1"] { background: rgb(20, 50, 100); color: rgba(255, 255, 255, 0.85); }
-.data-table--heatmap tbody td[data-level="2"] { background: rgb(28, 70, 130); color: rgba(255, 255, 255, 0.85); }
-.data-table--heatmap tbody td[data-level="3"] { background: rgb(36, 90, 160); color: rgba(255, 255, 255, 0.85); }
-.data-table--heatmap tbody td[data-level="4"] { background: rgb(44, 110, 190); color: #fff; }
-.data-table--heatmap tbody td[data-level="5"] { background: rgb(52, 130, 210); color: #fff; }
-.data-table--heatmap tbody td[data-level="6"] { background: rgb(60, 150, 230); color: #fff; }
-.data-table--heatmap tbody td[data-level="7"] { background: rgb(68, 170, 235); color: #fff; }
+.data-table--heatmap [data-level="1"] { background: rgb(20, 50, 100) !important; color: rgba(255, 255, 255, 0.85); }
+.data-table--heatmap [data-level="2"] { background: rgb(28, 70, 130) !important; color: rgba(255, 255, 255, 0.85); }
+.data-table--heatmap [data-level="3"] { background: rgb(36, 90, 160) !important; color: rgba(255, 255, 255, 0.85); }
+.data-table--heatmap [data-level="4"] { background: rgb(44, 110, 190) !important; color: #fff; }
+.data-table--heatmap [data-level="5"] { background: rgb(52, 130, 210) !important; color: #fff; }
+.data-table--heatmap [data-level="6"] { background: rgb(60, 150, 230) !important; color: #fff; }
+.data-table--heatmap [data-level="7"] { background: rgb(68, 170, 235) !important; color: #fff; }
 
 /* Heatmap colour legend */
 .heatmap-legend {
