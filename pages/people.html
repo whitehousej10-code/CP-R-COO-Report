@@ -12,7 +12,6 @@
 </nav>
 
 <section data-panel="headcount" data-tab-group="people" class="tab-panel is-active">
-
   <style>
     .po-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:24px;background:rgba(240,192,64,.12);border:1px solid rgba(240,192,64,.12);border-radius:10px;overflow:hidden}
     .po-kpi{background:#141424;padding:22px 24px 18px;position:relative}
@@ -33,7 +32,7 @@
     .po-dept-bar-track{flex:1;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
     .po-dept-bar-fill{height:100%;border-radius:3px;background:#f0c040;opacity:.7}
     .po-dept-count{font-size:12px;font-weight:500;color:#e8e8f0;width:22px;text-align:right;flex-shrink:0}
-    .po-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(240,192,64,.12);border:1px solid rgba(240,192,64,.12);border-radius:10px;overflow:hidden;margin-bottom:24px}
+    .po-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(240,192,64,.12);border:1px solid rgba(240,192,64,.12);border-radius:10px;overflow:hidden;margin-bottom:24px}
     .po-stat-card{background:#141424;padding:22px 24px 18px}
     .po-stat-title{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#9494a8;margin-bottom:14px}
     .po-donut-wrap{display:flex;align-items:center;gap:18px}
@@ -42,12 +41,6 @@
     .po-legend-item{display:flex;align-items:center;gap:8px;font-size:12px;color:#e8e8f0}
     .po-legend-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
     .po-legend-pct{color:#9494a8;margin-left:auto;font-size:11px}
-    .po-reasons{display:flex;flex-direction:column;gap:7px}
-    .po-reason-row{display:flex;align-items:center;gap:8px}
-    .po-reason-label{font-size:11.5px;color:#e8e8f0;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .po-reason-bar-track{width:72px;height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;flex-shrink:0}
-    .po-reason-bar-fill{height:100%;border-radius:3px;background:rgba(240,192,64,.55)}
-    .po-reason-count{font-size:12px;font-weight:500;color:#9494a8;width:16px;text-align:right;flex-shrink:0}
     .po-misc{display:flex;flex-direction:column;gap:10px}
     .po-misc-row{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:9px;border-bottom:1px solid rgba(255,255,255,.04)}
     .po-misc-row:last-child{border-bottom:none;padding-bottom:0}
@@ -56,19 +49,18 @@
     .po-misc-value em{font-style:normal;color:#f0c040}
     @media(max-width:900px){.po-kpis{grid-template-columns:repeat(2,1fr)}.po-grid{grid-template-columns:1fr}.po-stats{grid-template-columns:1fr}}
   </style>
-
   <div style="padding:28px 48px 40px;">
-
+    <!-- KPIs -->
     <div class="po-kpis">
       <div class="po-kpi po-kpi--hl">
         <div class="po-kpi-label">Headcount at Close</div>
-        <div class="po-kpi-value">63</div>
-        <div class="po-kpi-sub">Up from <b>53</b> at start of year</div>
+        <div class="po-kpi-value">61</div>
+        <div class="po-kpi-sub">Up from <b>51</b> at start of year</div>
       </div>
       <div class="po-kpi">
         <div class="po-kpi-label">New Joiners</div>
         <div class="po-kpi-value">31</div>
-        <div class="po-kpi-sub">Across <b>8</b> departments</div>
+        <div class="po-kpi-sub">Across <b>10</b> departments</div>
       </div>
       <div class="po-kpi">
         <div class="po-kpi-label">Leavers</div>
@@ -81,7 +73,7 @@
         <div class="po-kpi-sub">Avg age <b>27</b></div>
       </div>
     </div>
-
+    <!-- Chart + Departments -->
     <div class="po-grid">
       <div class="po-card">
         <div class="po-card-title">Monthly Headcount · FY 25/26</div>
@@ -92,37 +84,29 @@
       <div class="po-card">
         <div class="po-card-title">Headcount by Team · May 2026</div>
         <ul class="po-dept-list">
-          <li class="po-dept-row"><span class="po-dept-name">Cardiac Coaching</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:100%"></div></div><span class="po-dept-count">38</span></li>
-          <li class="po-dept-row"><span class="po-dept-name">Experience</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:15.8%"></div></div><span class="po-dept-count">6</span></li>
-          <li class="po-dept-row"><span class="po-dept-name">Assessment</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:13.2%"></div></div><span class="po-dept-count">5</span></li>
-          <li class="po-dept-row"><span class="po-dept-name">Head Office</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:10.5%"></div></div><span class="po-dept-count">4</span></li>
-          <li class="po-dept-row"><span class="po-dept-name">Clinical</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:7.9%"></div></div><span class="po-dept-count">3</span></li>
-          <li class="po-dept-row"><span class="po-dept-name">Operations</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:7.9%"></div></div><span class="po-dept-count">3</span></li>
-          <li class="po-dept-row"><span class="po-dept-name">Partnerships</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:5.3%"></div></div><span class="po-dept-count">2</span></li>
-          <li class="po-dept-row"><span class="po-dept-name">Brand + Comms</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:5.3%"></div></div><span class="po-dept-count">2</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Cardiac Coaching</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:100%"></div></div><span class="po-dept-count">37</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Experience</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:16.2%"></div></div><span class="po-dept-count">6</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Assessment</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:13.5%"></div></div><span class="po-dept-count">5</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Head Office</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:8.1%"></div></div><span class="po-dept-count">3</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Clinical</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:8.1%"></div></div><span class="po-dept-count">3</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Talent &amp; Inspiration</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:5.4%"></div></div><span class="po-dept-count">2</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Partnerships</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:5.4%"></div></div><span class="po-dept-count">2</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Brand + Comms</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:2.7%"></div></div><span class="po-dept-count">1</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Technology</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:2.7%"></div></div><span class="po-dept-count">1</span></li>
+          <li class="po-dept-row"><span class="po-dept-name">Operations</span><div class="po-dept-bar-track"><div class="po-dept-bar-fill" style="width:2.7%"></div></div><span class="po-dept-count">1</span></li>
         </ul>
       </div>
     </div>
-
+    <!-- Bottom stats — 2 col (gender + workforce profile) -->
     <div class="po-stats">
       <div class="po-stat-card">
         <div class="po-stat-title">Gender Balance · Current</div>
         <div class="po-donut-wrap">
           <canvas id="poGenderChart" class="po-donut-canvas"></canvas>
           <div class="po-legend">
-            <div class="po-legend-item"><div class="po-legend-dot" style="background:#f0c040"></div>Female<span class="po-legend-pct">57%</span></div>
-            <div class="po-legend-item"><div class="po-legend-dot" style="background:rgba(240,192,64,.32)"></div>Male<span class="po-legend-pct">43%</span></div>
+            <div class="po-legend-item"><div class="po-legend-dot" style="background:#f0c040"></div>Female<span class="po-legend-pct">59%</span></div>
+            <div class="po-legend-item"><div class="po-legend-dot" style="background:rgba(240,192,64,.32)"></div>Male<span class="po-legend-pct">41%</span></div>
           </div>
-        </div>
-      </div>
-      <div class="po-stat-card">
-        <div class="po-stat-title">Leaver Reasons · FY 25/26</div>
-        <div class="po-reasons">
-          <div class="po-reason-row"><span class="po-reason-label">Personal</span><div class="po-reason-bar-track"><div class="po-reason-bar-fill" style="width:100%"></div></div><span class="po-reason-count">6</span></div>
-          <div class="po-reason-row"><span class="po-reason-label">End of Placement</span><div class="po-reason-bar-track"><div class="po-reason-bar-fill" style="width:66.7%"></div></div><span class="po-reason-count">4</span></div>
-          <div class="po-reason-row"><span class="po-reason-label">Unsuccessful Probation</span><div class="po-reason-bar-track"><div class="po-reason-bar-fill" style="width:66.7%"></div></div><span class="po-reason-count">4</span></div>
-          <div class="po-reason-row"><span class="po-reason-label">Career Change</span><div class="po-reason-bar-track"><div class="po-reason-bar-fill" style="width:33.3%"></div></div><span class="po-reason-count">2</span></div>
-          <div class="po-reason-row"><span class="po-reason-label">Other</span><div class="po-reason-bar-track"><div class="po-reason-bar-fill" style="width:50%"></div></div><span class="po-reason-count">3</span></div>
         </div>
       </div>
       <div class="po-stat-card">
@@ -130,12 +114,12 @@
         <div class="po-misc">
           <div class="po-misc-row"><span class="po-misc-label">Full-time</span><span class="po-misc-value"><em>35</em> of 37 profiled</span></div>
           <div class="po-misc-row"><span class="po-misc-label">Permanent contracts</span><span class="po-misc-value"><em>48</em> of 53 profiled</span></div>
-          <div class="po-misc-row"><span class="po-misc-label">Peak headcount</span><span class="po-misc-value"><em>71</em> · Mar 2026</span></div>
+          <div class="po-misc-row"><span class="po-misc-label">Peak headcount</span><span class="po-misc-value"><em>69</em> · Mar 2026</span></div>
           <div class="po-misc-row"><span class="po-misc-label">Turnover rate</span><span class="po-misc-value"><em>30%</em> of avg headcount</span></div>
         </div>
       </div>
     </div>
-
+    <!-- Team profiles -->
     <div class="section-label">Leadership</div>
     <div class="team-grid">
       <div class="person-card featured"><div class="person-avatar">JW</div><div class="person-name">Jamie Whitehouse</div><div class="person-role">Chief Operating Officer</div><div class="person-line">The connective tissue across every function this year. Partnerships, people, clinical standards, commercial growth &mdash; and building the EM function from scratch.</div></div>
@@ -171,11 +155,8 @@
       <div class="person-card"><div class="person-avatar">OH</div><div class="person-name">Ollie Hagar</div><div class="person-role">Experience Manager</div><div class="person-line">60.9% conversion. &pound;5,256 avg athlete value &mdash; second highest in the team. Real commercial instinct for year one.</div></div>
       <div class="person-card"><div class="person-avatar">MR</div><div class="person-name">Megan Read</div><div class="person-role">Experience Manager</div><div class="person-line">54.3% conversion. &pound;5,369 avg athlete value &mdash; highest in the team. Her biggest year is still ahead of her.</div></div>
     </div>
-
   </div>
-
-  <div class="page-footer"><div class="footer-text">CP+R &middot; People Dashboard &middot; FY 2025/26 &middot; 63 people. The team behind every number in this report.</div></div>
-
+  <div class="page-footer"><div class="footer-text">CP+R &middot; People Dashboard &middot; FY 2025/26 &middot; 61 people. The team behind every number in this report.</div></div>
 </section>
 
 <section data-panel="recruitment" data-tab-group="people" class="tab-panel">
@@ -215,87 +196,100 @@
 <div class="narrative" style="border-left:3px solid #3b82f6;background:#fafafa;padding:16px 20px;border-radius:0 6px 6px 0;">World-class coaching is what turns a referral into a retained athlete and the next referral. In FY26/27 we recruit for adaptability over static skill, select on real signal rather than interview polish, and hold every hire to the standard above. The bench we build this year is the income we protect next year.</div>
 </div>
 </section>
-
 </div>
 </div>
 
-<!-- ── People charts ── drawn after Chart.js is confirmed available ── -->
+<!-- ── People charts — robust loader ── -->
 <script>
 (function () {
-  function drawPeopleCharts() {
-    var Y = '#f0c040', B = 'rgba(240,192,64,0.20)';
+  var HC_DATA = [51,52,51,57,57,59,66,66,67,69,63,61];
+  var HC_LABELS = ['Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26','May 26'];
+  var Y = '#f0c040';
+  var B = 'rgba(240,192,64,0.20)';
+  var drawn = false;
+  function drawCharts() {
+    if (drawn) return;
+    var hcEl = document.getElementById('poHcChart');
+    var gEl  = document.getElementById('poGenderChart');
+    if (!hcEl || !gEl) return; // not in DOM yet, wait
+    drawn = true;
     Chart.defaults.font.family = "'DM Sans', sans-serif";
     Chart.defaults.color = '#9494a8';
-
     // Line chart
-    var hcEl = document.getElementById('poHcChart');
-    if (hcEl && !hcEl._chartDrawn) {
-      hcEl._chartDrawn = true;
-      var ctx = hcEl.getContext('2d');
-      var g = ctx.createLinearGradient(0, 0, 0, 155);
-      g.addColorStop(0, 'rgba(240,192,64,0.18)');
-      g.addColorStop(1, 'rgba(240,192,64,0)');
-      new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26','May 26'],
-          datasets: [{
-            data: [53,54,53,59,59,61,68,68,69,71,65,63],
-            borderColor: Y, borderWidth: 2,
-            pointBackgroundColor: Y, pointRadius: 3, pointHoverRadius: 5,
-            fill: true, backgroundColor: g, tension: 0.35
-          }]
-        },
-        options: {
-          responsive: true, maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false },
-            tooltip: { backgroundColor: '#1a1a2e', borderColor: B, borderWidth: 1, titleColor: '#e8e8f0', bodyColor: Y, callbacks: { label: function(c){ return ' ' + c.parsed.y + ' FTE'; } } }
-          },
-          scales: {
-            x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, maxRotation: 0 } },
-            y: { min: 45, grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, stepSize: 10 } }
+    var ctx = hcEl.getContext('2d');
+    var grad = ctx.createLinearGradient(0, 0, 0, 155);
+    grad.addColorStop(0, 'rgba(240,192,64,0.18)');
+    grad.addColorStop(1, 'rgba(240,192,64,0)');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: HC_LABELS,
+        datasets: [{
+          data: HC_DATA,
+          borderColor: Y, borderWidth: 2,
+          pointBackgroundColor: Y, pointRadius: 3, pointHoverRadius: 5,
+          fill: true, backgroundColor: grad, tension: 0.35
+        }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: '#1a1a2e', borderColor: B, borderWidth: 1,
+            titleColor: '#e8e8f0', bodyColor: Y,
+            callbacks: { label: function(c) { return ' ' + c.parsed.y + ' FTE'; } }
           }
-        }
-      });
-    }
-
-    // Donut chart
-    var gEl = document.getElementById('poGenderChart');
-    if (gEl && !gEl._chartDrawn) {
-      gEl._chartDrawn = true;
-      new Chart(gEl.getContext('2d'), {
-        type: 'doughnut',
-        data: {
-          labels: ['Female', 'Male'],
-          datasets: [{ data: [34, 26], backgroundColor: [Y, 'rgba(240,192,64,0.28)'], borderColor: '#141424', borderWidth: 3, hoverOffset: 4 }]
         },
-        options: {
-          responsive: false, cutout: '68%',
-          plugins: { legend: { display: false }, tooltip: { backgroundColor: '#1a1a2e', borderColor: B, borderWidth: 1, titleColor: '#e8e8f0', bodyColor: Y } }
+        scales: {
+          x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, maxRotation: 0 } },
+          y: { min: 44, grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, stepSize: 10 } }
         }
-      });
-    }
+      }
+    });
+    // Donut
+    new Chart(gEl.getContext('2d'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Female', 'Male'],
+        datasets: [{ data: [36, 25], backgroundColor: [Y, 'rgba(240,192,64,0.28)'], borderColor: '#141424', borderWidth: 3, hoverOffset: 4 }]
+      },
+      options: {
+        responsive: false, cutout: '68%',
+        plugins: {
+          legend: { display: false },
+          tooltip: { backgroundColor: '#1a1a2e', borderColor: B, borderWidth: 1, titleColor: '#e8e8f0', bodyColor: Y }
+        }
+      }
+    });
   }
-
-  function init() {
-    // If Chart.js already on the page, draw immediately
-    if (typeof Chart !== 'undefined') {
-      drawPeopleCharts();
-      return;
-    }
-    // Otherwise load it, then draw
+  function tryDraw() {
+    if (typeof Chart === 'undefined') return; // Chart.js not ready
+    drawCharts();
+  }
+  function loadChartJs(cb) {
+    if (typeof Chart !== 'undefined') { cb(); return; }
     var s = document.createElement('script');
     s.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
-    s.onload = drawPeopleCharts;
+    s.onload = cb;
     document.head.appendChild(s);
   }
-
-  // If DOM is already ready, run now; otherwise wait
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  // Poll until the canvas elements are in the DOM, then draw
+  function waitAndDraw() {
+    loadChartJs(function () {
+      var attempts = 0;
+      var interval = setInterval(function () {
+        attempts++;
+        var hcEl = document.getElementById('poHcChart');
+        var gEl  = document.getElementById('poGenderChart');
+        if (hcEl && gEl) {
+          clearInterval(interval);
+          drawCharts();
+        }
+        if (attempts > 50) clearInterval(interval); // give up after 5s
+      }, 100);
+    });
   }
+  waitAndDraw();
 })();
 </script>
