@@ -1,0 +1,71 @@
+{
+  "poHc": {
+    "type": "line",
+    "data": {
+      "labels": ["Jun 25", "Jul 25", "Aug 25", "Sep 25", "Oct 25", "Nov 25", "Dec 25", "Jan 26", "Feb 26", "Mar 26", "Apr 26", "May 26"],
+      "datasets": [{
+        "data": [51, 52, 51, 57, 57, 59, 66, 66, 67, 69, 63, 61],
+        "borderColor": "#f0c040",
+        "borderWidth": 2,
+        "pointBackgroundColor": "#f0c040",
+        "pointRadius": 3,
+        "pointHoverRadius": 5,
+        "fill": true,
+        "backgroundColor": "rgba(240,192,64,0.18)",
+        "tension": 0.35
+      }]
+    },
+    "options": {
+      "responsive": true,
+      "maintainAspectRatio": false,
+      "plugins": {
+        "legend": { "display": false },
+        "tooltip": {
+          "backgroundColor": "#1a1a2e",
+          "borderColor": "rgba(240,192,64,0.20)",
+          "borderWidth": 1,
+          "titleColor": "#e8e8f0",
+          "bodyColor": "#f0c040"
+        }
+      },
+      "scales": {
+        "x": {
+          "grid": { "color": "rgba(255,255,255,0.04)" },
+          "ticks": { "font": { "size": 10 }, "maxRotation": 0 }
+        },
+        "y": {
+          "min": 44,
+          "grid": { "color": "rgba(255,255,255,0.04)" },
+          "ticks": { "font": { "size": 10 }, "stepSize": 10 }
+        }
+      }
+    }
+  },
+  "poGender": {
+    "type": "doughnut",
+    "data": {
+      "labels": ["Female", "Male"],
+      "datasets": [{
+        "data": [36, 25],
+        "backgroundColor": ["#f0c040", "rgba(240,192,64,0.28)"],
+        "borderColor": "#141424",
+        "borderWidth": 3,
+        "hoverOffset": 4
+      }]
+    },
+    "options": {
+      "responsive": false,
+      "cutout": "68%",
+      "plugins": {
+        "legend": { "display": false },
+        "tooltip": {
+          "backgroundColor": "#1a1a2e",
+          "borderColor": "rgba(240,192,64,0.20)",
+          "borderWidth": 1,
+          "titleColor": "#e8e8f0",
+          "bodyColor": "#f0c040"
+        }
+      }
+    }
+  }
+}

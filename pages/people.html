@@ -78,7 +78,7 @@
       <div class="po-card">
         <div class="po-card-title">Monthly Headcount · FY 25/26</div>
         <div class="po-chart-wrap">
-          <canvas id="poHcChart"></canvas>
+          <canvas data-chart="poHc" data-chart-src="data/people-charts.json"></canvas>
         </div>
       </div>
       <div class="po-card">
@@ -102,7 +102,7 @@
       <div class="po-stat-card">
         <div class="po-stat-title">Gender Balance · Current</div>
         <div class="po-donut-wrap">
-          <canvas id="poGenderChart" class="po-donut-canvas"></canvas>
+          <canvas data-chart="poGender" data-chart-src="data/people-charts.json" class="po-donut-canvas"></canvas>
           <div class="po-legend">
             <div class="po-legend-item"><div class="po-legend-dot" style="background:#f0c040"></div>Female<span class="po-legend-pct">59%</span></div>
             <div class="po-legend-item"><div class="po-legend-dot" style="background:rgba(240,192,64,.32)"></div>Male<span class="po-legend-pct">41%</span></div>
@@ -119,7 +119,9 @@
         </div>
       </div>
     </div>
-    
+  </div>
+</section>
+
 <section data-panel="recruitment" data-tab-group="people" class="tab-panel">
 <div style="position:relative;border-radius:10px;overflow:hidden;margin:0 48px 28px;min-height:200px;background-image:url('img/recruitment-view.jpg');background-size:cover;background-position:center;">
 <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,17,17,.2) 0%,rgba(17,17,17,.82) 100%);"></div>
@@ -159,98 +161,3 @@
 </section>
 </div>
 </div>
-
-<!-- ── People charts — robust loader ── -->
-<script>
-(function () {
-  var HC_DATA = [51,52,51,57,57,59,66,66,67,69,63,61];
-  var HC_LABELS = ['Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26','May 26'];
-  var Y = '#f0c040';
-  var B = 'rgba(240,192,64,0.20)';
-  var drawn = false;
-  function drawCharts() {
-    if (drawn) return;
-    var hcEl = document.getElementById('poHcChart');
-    var gEl  = document.getElementById('poGenderChart');
-    if (!hcEl || !gEl) return; // not in DOM yet, wait
-    drawn = true;
-    Chart.defaults.font.family = "'DM Sans', sans-serif";
-    Chart.defaults.color = '#9494a8';
-    // Line chart
-    var ctx = hcEl.getContext('2d');
-    var grad = ctx.createLinearGradient(0, 0, 0, 155);
-    grad.addColorStop(0, 'rgba(240,192,64,0.18)');
-    grad.addColorStop(1, 'rgba(240,192,64,0)');
-    new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: HC_LABELS,
-        datasets: [{
-          data: HC_DATA,
-          borderColor: Y, borderWidth: 2,
-          pointBackgroundColor: Y, pointRadius: 3, pointHoverRadius: 5,
-          fill: true, backgroundColor: grad, tension: 0.35
-        }]
-      },
-      options: {
-        responsive: true, maintainAspectRatio: false,
-        plugins: {
-          legend: { display: false },
-          tooltip: {
-            backgroundColor: '#1a1a2e', borderColor: B, borderWidth: 1,
-            titleColor: '#e8e8f0', bodyColor: Y,
-            callbacks: { label: function(c) { return ' ' + c.parsed.y + ' FTE'; } }
-          }
-        },
-        scales: {
-          x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, maxRotation: 0 } },
-          y: { min: 44, grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { font: { size: 10 }, stepSize: 10 } }
-        }
-      }
-    });
-    // Donut
-    new Chart(gEl.getContext('2d'), {
-      type: 'doughnut',
-      data: {
-        labels: ['Female', 'Male'],
-        datasets: [{ data: [36, 25], backgroundColor: [Y, 'rgba(240,192,64,0.28)'], borderColor: '#141424', borderWidth: 3, hoverOffset: 4 }]
-      },
-      options: {
-        responsive: false, cutout: '68%',
-        plugins: {
-          legend: { display: false },
-          tooltip: { backgroundColor: '#1a1a2e', borderColor: B, borderWidth: 1, titleColor: '#e8e8f0', bodyColor: Y }
-        }
-      }
-    });
-  }
-  function tryDraw() {
-    if (typeof Chart === 'undefined') return; // Chart.js not ready
-    drawCharts();
-  }
-  function loadChartJs(cb) {
-    if (typeof Chart !== 'undefined') { cb(); return; }
-    var s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js';
-    s.onload = cb;
-    document.head.appendChild(s);
-  }
-  // Poll until the canvas elements are in the DOM, then draw
-  function waitAndDraw() {
-    loadChartJs(function () {
-      var attempts = 0;
-      var interval = setInterval(function () {
-        attempts++;
-        var hcEl = document.getElementById('poHcChart');
-        var gEl  = document.getElementById('poGenderChart');
-        if (hcEl && gEl) {
-          clearInterval(interval);
-          drawCharts();
-        }
-        if (attempts > 50) clearInterval(interval); // give up after 5s
-      }, 100);
-    });
-  }
-  waitAndDraw();
-})();
-</script>
