@@ -4,6 +4,7 @@ export const NAV_ITEMS = [
   { id: "partnerships", label: "Partners", icon: "🤝", title: "CP+R · Partnerships" },
   { id: "onboarding", label: "Onboard", icon: "📋", title: "CP+R · Onboarding" },
   { id: "em-performance", label: "EM Perf", icon: "⚡", title: "CP+R · EM Performance" },
+  { id: "nursing", label: "Nursing", icon: "🏥", title: "CP+R · Nursing" },
   { id: "clinical", label: "Clinical", icon: "🏥", title: "CP+R · Clinical" },
   { id: "people", label: "People", icon: "👥", title: "CP+R · People" },
   { id: "operations", label: "Operations", icon: "⚙️", title: "CP+R · Operations" },
