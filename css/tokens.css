@@ -16,4 +16,5 @@
 [data-accent="yellow"] { --accent: var(--yellow); }
 [data-accent="green"] { --accent: var(--green); }
 [data-accent="pink"] { --accent: var(--pink); }
-[data-accent="blue"] { --accent: var(--blue); }[data-accent="teal"] { --accent: var(--teal); }
+[data-accent="blue"] { --accent: var(--blue); }
+[data-accent="teal"] { --accent: var(--teal); }
