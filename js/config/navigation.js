@@ -6,6 +6,7 @@ export const NAV_ITEMS = [
   { id: "em-performance", label: "EM Perf", icon: "⚡", title: "CP+R · EM Performance" },
   { id: "clinical", label: "Clinical", icon: "🏥", title: "CP+R · Clinical" },
   { id: "people", label: "People", icon: "👥", title: "CP+R · People" },
+  { id: "operations", label: "Operations", icon: "⚙️", title: "CP+R · Operations" },
   { id: "tech", label: "Tech", icon: "💻", title: "CP+R · Technology" },
   { id: "fy2627", label: "FY26/27", icon: "🔭", title: "CP+R · FY26/27" },
 ];
