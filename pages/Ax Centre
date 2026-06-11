@@ -1,0 +1,74 @@
+<div data-route-id="ax-centres" data-accent="green" data-page-title="CP+R · Ax Centres">
+<div class="page-content">
+<div class="page-banner">
+<div class="page-tag">ASSESSMENT CENTRE · 05</div>
+<div class="page-title">Ax Centres <span>&amp; Performance</span></div>
+<div class="page-subtitle">Executive Summary · FY25/26 · Significant transition and operational uplift following Patrick Hicks taking leadership in January — improved output, stronger team capability and upgrades to facilities, processes and equipment</div>
+</div>
+
+<nav class="tab-nav" data-tabs="ax-centres" aria-label="Section tabs">
+<button type="button" class="tab-btn is-active" data-tab="performance">Performance &amp; Capacity<span class="tab-desc">Output &amp; volatility</span></button>
+<button type="button" class="tab-btn" data-tab="quality">Operations &amp; Quality<span class="tab-desc">Challenges &amp; experience</span></button>
+<button type="button" class="tab-btn" data-tab="team">Team &amp; Infrastructure<span class="tab-desc">Capability &amp; upgrades</span></button>
+<button type="button" class="tab-btn" data-tab="strategy">Strategic Priorities<span class="tab-desc">FY26/27 focus</span></button>
+</nav>
+
+<section data-panel="performance" data-tab-group="ax-centres" class="tab-panel is-active">
+<div class="hero-strip"><div class="hero-cell">
+<div class="k-label" style="color:#9b9b9b">PERFORMANCE &amp; CAPACITY · FY25/26</div>
+<div style="font-size:28px;font-weight:800;color:#4db848;margin:6px 0">+9.6%</div>
+<div style="font-size:13px;color:#c9c9c9">Weekly paid reassessments increased by 9.6% (+2.2 per week), demonstrating improved capacity and stronger EM compliance and value communication. The operation has shifted from a stable low-output model to a higher-potential but less predictable one.</div>
+</div></div>
+<div class="kpi-row">
+<div class="kpi-card green"><div class="k-label">WEEKLY REASSESSMENTS</div><div class="k-value">+2.2/wk</div><div class="k-sub">+9.6% year-on-year</div></div>
+<div class="kpi-card dark"><div class="k-label">PERFORMANCE PROFILE</div><div class="k-value">Volatile</div><div class="k-sub">Higher peaks, less consistency</div></div>
+<div class="kpi-card blue"><div class="k-label">MODEL SHIFT</div><div class="k-value">Higher potential</div><div class="k-sub">From stable low-output to higher but less predictable</div></div>
+</div>
+<div class="narrative" style="margin-top:18px">
+<p style="margin:0"><strong>Drivers of volatility:</strong> uneven payment-plan scheduling, equipment downtime (CPET), seasonal illness (notably Q3) and external disruptions such as strikes and facility upgrades.</p>
+</div>
+</section>
+
+<section data-panel="quality" data-tab-group="ax-centres" class="tab-panel">
+<div class="section-title">OPERATIONAL CHALLENGES</div>
+<div class="kpi-row">
+<div class="kpi-card dark"><div class="k-label">FACILITY GAPS</div><div class="k-value">Showers</div><div class="k-sub">Lack of showers/changing rooms — key patient friction, impacting attendance &amp; perception</div></div>
+<div class="kpi-card dark"><div class="k-label">CANCELLATIONS</div><div class="k-value">↑ YoY</div><div class="k-sub">Particularly Q3 (flu season) — affecting utilisation &amp; revenue stability</div></div>
+<div class="kpi-card dark"><div class="k-label">EQUIPMENT (CPET)</div><div class="k-value">Reliability</div><div class="k-sub">Reliability issues &amp; scheduling inefficiencies constrain throughput</div></div>
+</div>
+<div class="section-title" style="margin-top:22px">QUALITY &amp; PATIENT EXPERIENCE</div>
+<div class="kpi-row">
+<div class="kpi-card green"><div class="k-label">PATIENT FEEDBACK</div><div class="k-value">5-star</div><div class="k-sub">Consistently strong — professionalism, warmth &amp; attentiveness</div></div>
+<div class="kpi-card dark"><div class="k-label">REVIEW VOLUME</div><div class="k-value">Low</div><div class="k-sub">Doctify underperforming — missed credibility opportunity</div></div>
+</div>
+</section>
+
+<section data-panel="team" data-tab-group="ax-centres" class="tab-panel">
+<div class="section-title">TEAM &amp; CAPABILITY DEVELOPMENT</div>
+<div class="narrative">
+<p style="margin:0">Strong progress developing assessment specialists and placement students — particularly in communication and interpersonal skills, clinical assurance and professionalism, and customer handling and adaptability. The team culture is positive with low conflict and improving proactivity.</p>
+</div>
+<div class="section-title" style="margin-top:22px">INFRASTRUCTURE &amp; OPERATIONAL IMPROVEMENTS</div>
+<div class="kpi-row">
+<div class="kpi-card green"><div class="k-label">ENVIRONMENT</div><div class="k-value">Upgraded</div><div class="k-sub">Flooring, equipment &amp; presentation</div></div>
+<div class="kpi-card blue"><div class="k-label">SOPs &amp; INDUCTION</div><div class="k-value">New</div><div class="k-sub">Frameworks established</div></div>
+<div class="kpi-card dark"><div class="k-label">REPORTING ERRORS</div><div class="k-value">↓ Reduced</div><div class="k-sub">Continued reduction — further improvement required</div></div>
+</div>
+</section>
+
+<section data-panel="strategy" data-tab-group="ax-centres" class="tab-panel">
+<div class="hero-strip"><div class="hero-cell">
+<div class="k-label" style="color:#9b9b9b">OVERALL ASSESSMENT</div>
+<div style="font-size:28px;font-weight:800;color:#4db848;margin:6px 0">Positive trajectory</div>
+<div style="font-size:13px;color:#c9c9c9">Output and capability have increased. The key next phase is to convert higher potential into consistent, reliable performance — addressing facility limitations, operational variability and patient-experience gaps to unlock further growth and revenue.</div>
+</div></div>
+<div class="narrative" style="margin-top:18px">
+<div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#1a1a1a;margin-bottom:8px">Strategic priorities · FY26/27</div>
+<p style="margin:0 0 8px"><strong>Volume &amp; reliability:</strong> increase and stabilise weekly assessment volumes (balancing high/low weeks) and improve cancellation management via pre-assessment screening and stricter policies.</p>
+<p style="margin:0 0 8px"><strong>Resilience &amp; experience:</strong> invest in equipment resilience and new technologies (e.g. VALD, enhanced CPET capability); enhance patient experience and retention, including upgraded reporting and metrics; and significantly increase Doctify review collection.</p>
+<p style="margin:0"><strong>People:</strong> continue developing staff capability and customer-service excellence.</p>
+</div>
+<div class="page-footer"><div class="footer-text">Assessment Centre Executive Summary · FY25/26 · under Patrick Hicks' leadership</div></div>
+</section>
+</div>
+</div>
