@@ -1,0 +1,88 @@
+<div data-route-id="clinical" data-accent="blue" data-page-title="CP+R · Clinical">
+<div class="page-content">
+<div class="page-banner">
+<div class="page-tag">CLINICAL · 04</div>
+<div class="page-title">Clinical <span>&amp; Governance</span></div>
+<div class="page-subtitle">CP+R Clinical Report — COO Summary · June 2026 · Clinical governance, operational performance, innovation progress &amp; strategic priorities across CP+R's clinical function for Q4 FY25/26 and forward planning into FY26/27</div>
+</div>
+
+<nav class="tab-nav" data-tabs="clinical" aria-label="Section tabs">
+<button type="button" class="tab-btn is-active" data-tab="overview">Overview &amp; CEF<span class="tab-desc">Role, risks &amp; effectiveness</span></button>
+<button type="button" class="tab-btn" data-tab="governance">Governance &amp; Ax Centre<span class="tab-desc">Policies &amp; development</span></button>
+<button type="button" class="tab-btn" data-tab="data">Data &amp; Physio<span class="tab-desc">Referrals, GDPR &amp; reporting</span></button>
+<button type="button" class="tab-btn" data-tab="future">Relationships &amp; Innovation<span class="tab-desc">Influence &amp; pipeline</span></button>
+</nav>
+
+<section data-panel="overview" data-tab-group="clinical" class="tab-panel is-active">
+<div class="hero-strip"><div class="hero-cell">
+<div class="k-label" style="color:#9b9b9b">ROLE OVERVIEW · FY26/27 RISKS</div>
+<div style="font-size:28px;font-weight:800;color:#44c8f5;margin:6px 0">Stabilised</div>
+<div style="font-size:13px;color:#c9c9c9">The clinical leadership role has stabilised with a consistent split across projects, physiotherapy work, meetings and reactive tasks. Key Q1 FY26/27 risks: no long-term plan for the Bath Assessment Centre, and increased clinical admin workload during Ange's sabbatical.</div>
+</div></div>
+<div class="kpi-row">
+<div class="kpi-card dark"><div class="k-label">PRIORITY · 1</div><div class="k-value">Ax Centre</div><div class="k-sub">Assessment Centre review &amp; induction rollout</div></div>
+<div class="kpi-card blue"><div class="k-label">PRIORITY · 2</div><div class="k-value">Governance</div><div class="k-sub">Closure of data governance gaps</div></div>
+<div class="kpi-card green"><div class="k-label">PRIORITY · 3</div><div class="k-value">Dashboard</div><div class="k-sub">Healthy Age Score &amp; outcomes dashboard</div></div>
+</div>
+<div class="narrative" style="margin-top:18px">
+<div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#1a1a1a;margin-bottom:8px">Clinical Effectiveness Framework (CEF)</div>
+<p style="margin:0 0 8px"><strong>Safe &amp; Effective:</strong> Green for SOPs, policies and governance meetings. Amber for escalation and reporting (pending system updates). Incident handling progressing towards Green.</p>
+<p style="margin:0 0 8px"><strong>Quality:</strong> audit cycle established with NACR Green status on track; reporting and R&amp;D capabilities in development; training and competency frameworks fully implemented (Green).</p>
+<p style="margin:0"><strong>Innovation:</strong> Assessment Centre modernisation completed; innovation projects (e.g. VALD, AI tools) progressing; maturity matrix advancing towards Green.</p>
+</div>
+</section>
+
+<section data-panel="governance" data-tab-group="clinical" class="tab-panel">
+<div class="section-title">POLICIES &amp; GOVERNANCE</div>
+<div class="kpi-row">
+<div class="kpi-card green"><div class="k-label">RATIFIED</div><div class="k-value">Core</div><div class="k-sub">Safeguarding, consent, data protection, incident reporting, medical &amp; training frameworks</div></div>
+<div class="kpi-card dark"><div class="k-label">FOR RATIFICATION</div><div class="k-value">5+</div><div class="k-sub">IT security, lone working, SAR SOP &amp; safety-related policies</div></div>
+<div class="kpi-card blue"><div class="k-label">UNDER REVIEW</div><div class="k-value">SOPs</div><div class="k-sub">Selected operational SOPs &amp; notices</div></div>
+</div>
+<div class="section-title" style="margin-top:22px">ASSESSMENT CENTRE DEVELOPMENT</div>
+<div class="kpi-row">
+<div class="kpi-card green"><div class="k-label">MODERNISATION</div><div class="k-value">Complete</div><div class="k-sub">Full blueprint completed &amp; being implemented</div></div>
+<div class="kpi-card blue"><div class="k-label">INDUCTION</div><div class="k-value">Launched</div><div class="k-sub">Structured induction &amp; competency framework</div></div>
+<div class="kpi-card dark"><div class="k-label">EQUIPMENT (VALD)</div><div class="k-value">Progressing</div><div class="k-sub">Upgrade programme underway</div></div>
+</div>
+<div class="narrative" style="margin-top:18px">
+<p style="margin:0"><strong>Innovation in reporting:</strong> development of the Healthy Age Score, an outcomes dashboard, AI-supported reporting tools and advanced physiological metrics (OUES, HRmax). Strategic Q1 focus: complete the outcomes dashboard and integrate into Hub 2.0.</p>
+</div>
+</section>
+
+<section data-panel="data" data-tab-group="clinical" class="tab-panel">
+<div class="section-title">PHYSIOTHERAPY &amp; REFERRAL INSIGHTS · FROM JAN 2026</div>
+<div class="kpi-row">
+<div class="kpi-card dark"><div class="k-label">REFERRALS ANALYSED</div><div class="k-value">173</div><div class="k-sub">From January 2026</div></div>
+<div class="kpi-card blue"><div class="k-label">REFERRAL → ASSESSMENT</div><div class="k-value">5.6 days</div><div class="k-sub">Average · 4-day median</div></div>
+<div class="kpi-card green"><div class="k-label">FOLLOW-UP COMPLETION</div><div class="k-value">85.5%</div><div class="k-sub">Self-referral share 19.1%</div></div>
+<div class="kpi-card dark"><div class="k-label">20+ DAY WAITS</div><div class="k-value">6</div><div class="k-sub">cases · low external referrals, moderate clinician engagement</div></div>
+</div>
+<div class="narrative" style="margin-top:18px">
+<div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#1a1a1a;margin-bottom:8px">Data, GDPR &amp; reporting</div>
+<p style="margin:0 0 8px"><strong>Information governance:</strong> full IG and GDPR gap analysis completed. Key risks: missing DPIAs and ROPA, SAR process gaps, and RBAC/MFA inconsistencies. A structured action plan has been launched via Asana.</p>
+<p style="margin:0 0 8px"><strong>Data quality:</strong> inconsistent data capture and definitions and a lack of standardised reporting logic identified. Improvements underway across reporting ownership, version control and KPI consistency.</p>
+<p style="margin:0"><strong>Research &amp; development:</strong> early-stage R&amp;D pipeline established, focused on clinical evaluation, academic partnerships and conference participation.</p>
+</div>
+</section>
+
+<section data-panel="future" data-tab-group="clinical" class="tab-panel">
+<div class="section-title">CLINICAL RELATIONSHIPS &amp; EXTERNAL INFLUENCE</div>
+<div class="narrative">
+<p style="margin:0 0 8px">Active collaborations span academic work (e.g. CPET and AI research) and professional bodies (ACPICR, BACPR, NACR — currently limited formal engagement). Upcoming: a hypertension research publication and potential BACPR leadership representation. The strategic need is to increase external visibility and academic credibility and to build structured placement and research partnerships.</p>
+</div>
+<div class="section-title" style="margin-top:22px">INNOVATION PIPELINE &amp; FUTURE OPPORTUNITIES</div>
+<div class="kpi-row">
+<div class="kpi-card blue"><div class="k-label">TECHNOLOGY</div><div class="k-value">VALD + AI</div><div class="k-sub">Strength/movement system, wearables (ambulatory BP), AI risk prediction, automated reporting &amp; session summarisation</div></div>
+<div class="kpi-card dark"><div class="k-label">OPERATIONS</div><div class="k-value">Portal</div><div class="k-sub">Clinical governance portal, annual conference, preferred referral networks &amp; digital education modules</div></div>
+<div class="kpi-card green"><div class="k-label">AX CENTRE EXPANSION</div><div class="k-value">National</div><div class="k-sub">Standardised model, Bath upgrade, future satellite centres &amp; research-ready data infrastructure</div></div>
+</div>
+<div class="narrative" style="margin-top:18px">
+<div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;font-weight:700;color:#1a1a1a;margin-bottom:8px">Conclusion · FY25/26 → FY26/27</div>
+<p style="margin:0 0 8px"><strong>Achievements:</strong> major advancement in clinical governance, assessment centre modernisation, data and reporting infrastructure, and early R&amp;D capability — leaving the organisation significantly more mature than the previous year on a strong, stable clinical foundation.</p>
+<p style="margin:0"><strong>FY26/27 priorities:</strong> complete the data governance action plan; deploy the Healthy Age Score and outcomes dashboard; implement VALD and new assessment innovations; and strengthen research, partnerships and external positioning.</p>
+</div>
+<div class="page-footer"><div class="footer-text">CP+R Clinical Report · COO Summary · June 2026</div></div>
+</section>
+</div>
+</div>
