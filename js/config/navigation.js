@@ -4,8 +4,9 @@ export const NAV_ITEMS = [
   { id: "partnerships", label: "Partners", icon: "🤝", title: "CP+R · Partnerships" },
   { id: "onboarding", label: "Onboard", icon: "📋", title: "CP+R · Onboarding" },
   { id: "em-performance", label: "EM Perf", icon: "⚡", title: "CP+R · EM Performance" },
-  { id: "nursing", label: "Nursing", icon: "🏥", title: "CP+R · Nursing" },
+  { id: "nursing", label: "Nursing", icon: "🩺", title: "CP+R · Nursing" },
   { id: "clinical", label: "Clinical", icon: "🏥", title: "CP+R · Clinical" },
+  { id: "ax-centres", label: "Ax Centres", icon: "🏢", title: "CP+R · Ax Centres" },
   { id: "people", label: "People", icon: "👥", title: "CP+R · People" },
   { id: "operations", label: "Operations", icon: "⚙️", title: "CP+R · Operations" },
   { id: "tech", label: "Tech", icon: "💻", title: "CP+R · Technology" },
@@ -15,5 +16,5 @@ export const NAV_ITEMS = [
 export const DEFAULT_ROUTE = "overview";
 
 export function findNavItem(routeId) {
-    return NAV_ITEMS.find((item) => item.id === routeId) ?? NAV_ITEMS[0];
+  return NAV_ITEMS.find((item) => item.id === routeId) ?? NAV_ITEMS[0];
 }
