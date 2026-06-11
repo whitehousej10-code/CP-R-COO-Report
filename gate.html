@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CP+R · FY 25/26</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0e1116;--panel:#161b22;--border:#2a313c;--text:#e6e8eb;--muted:#8b949e;--accent:#c9a14a;--error:#e5534b;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',system-ui,sans-serif;background:radial-gradient(circle at 50% 30%,#1a2029 0%,var(--bg) 70%);color:var(--text);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;}
+    .gate{width:100%;max-width:380px;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:40px 32px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.45);}
+    .logo-img{max-width:160px;height:auto;margin:0 auto 18px;display:block;}
+    .subtitle{color:var(--muted);font-size:13px;letter-spacing:2px;text-transform:uppercase;margin-bottom:32px;}
+    .field{position:relative;margin-bottom:16px;}
+    input[type="password"]{width:100%;padding:14px 16px;background:#0e1116;border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:inherit;font-size:15px;letter-spacing:1px;outline:none;transition:border-color .2s;}
+    input[type="password"]:focus{border-color:var(--accent);}
+    button{width:100%;padding:14px;background:var(--accent);color:#0e1116;border:none;border-radius:10px;font-family:inherit;font-weight:600;font-size:15px;letter-spacing:.5px;cursor:pointer;transition:opacity .2s;}
+    button:hover{opacity:.9;}
+    .error{color:var(--error);font-size:13px;margin-top:14px;min-height:18px;opacity:0;transition:opacity .2s;}
+    .error.show{opacity:1;}
+    .gate.shake{animation:shake .4s;}
+    @keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-8px);}75%{transform:translateX(8px);}}
+  </style>
+</head>
+<body>
+  <form class="gate" id="gate" autocomplete="off">
+    <img class="logo-img" src="img/Picture1.png" alt="CP+R">
+    <div class="subtitle">FY 25/26 · Confidential</div>
+    <div class="field">
+      <input type="password" id="pw" placeholder="Enter access code" aria-label="Access code" autofocus>
+    </div>
+    <button type="submit">Unlock</button>
+    <div class="error" id="error">Incorrect access code. Please try again.</div>
+  </form>
+  <script>
+    const PASSWORD = "8UWS2026";
+    const form = document.getElementById("gate");
+    const pw = document.getElementById("pw");
+    const error = document.getElementById("error");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (pw.value === PASSWORD) {
+        sessionStorage.setItem("cpr_authed", "1");
+        window.location.href = "index.html";
+      } else {
+        error.classList.add("show");
+        form.classList.add("shake");
+        pw.value = "";
+        pw.focus();
+        setTimeout(function () { form.classList.remove("shake"); }, 400);
+      }
+    });
+  </script>
+</body>
+</html>
